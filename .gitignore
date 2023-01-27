@@ -2,6 +2,7 @@
 
 #backend dependecies
 /backend/node_modules
+/backend/.env
 
 
 
