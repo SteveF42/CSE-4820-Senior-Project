@@ -1,0 +1,146 @@
+require('dotenv').config()
+const mongoose = require('mongoose')
+const User = require('../models/users')
+const router = require('express').Router()
+const Token = require('../models/tokens')
+const { authenticateToken } = require('../middleware/isAuthenticated')
+const jwt = require('jsonwebtoken')
+
+// logs a user in and sends valid access tokens
+router.post('/login', async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+    console.log(req.body)
+    //encrypt passwords
+
+    try {
+        const user = await User.findOne({ email: email, password: password })
+        if (user) {
+            //send token
+            const { accessToken, refreshToken } = signToken(user._id.toString())
+            await new Token({
+                refreshToken: refreshToken,
+                previous: []
+            }).save()
+
+            return res.json({
+                accessToken,
+                refreshToken
+            })
+        } else {
+            // login not found
+            return res.sendStatus(404);
+        }
+
+    } catch (err) {
+        return res.sendStatus(500)
+    }
+
+})
+
+// adds an account to the databse and sends a new access token
+router.post('/register', async (req, res) => {
+    const email = req.body.email
+    const password = req.body.password
+
+    try {
+        const user = await User.findOne({ email: email })
+        //checks if that username is already in use
+        if (user) {
+            return res.sendStatus(409)
+        }
+
+        //create a new user and sign tokens
+        const newUser = new User({
+            email: email,
+            password: password
+        })
+
+        const savedUser = await newUser.save()
+        //create access tokens
+        const { accessToken, refreshToken: rf } = signToken(savedUser._id.toString());
+        const token = new Token({
+            refreshToken: rf,
+            previous: []
+        })
+        token.save()
+        //object created
+        res.status(201).json({
+            accessToken,
+            refreshToken: rf
+        })
+
+    } catch (err) {
+        //internal server error
+        console.log(err)
+        return res.sendStatus(500)
+    }
+})
+
+// invalidates current refresh tokens
+router.post('/logout', async (req, res) => {
+    const refreshToken = req.body.token
+
+    try {
+        const query = await Token.deleteOne({ refreshToken: refreshToken })
+        if (query.deletedCount == 1) {
+            return res.sendStatus(200)
+        }
+
+        return res.sendStatus(404)
+    } catch (err) {
+        return res.sendStatus(500)
+    }
+})
+
+// refreshes API tokens while invalidating old refresh tokens
+router.post('/token', async (req, res) => {
+    const refreshToken = req.body.token
+    //verifys the refresh token
+
+    try {
+        //if a refresh token is found in the previous, the whole family gets invalidated
+        const staleToken = await Token.findOne({ previous: refreshToken })
+        if (staleToken) {
+            await staleToken.delete()
+            return res.sendStatus(403)
+        }
+        const validToken = await Token.findOne({ refreshToken: refreshToken })
+        if (!validToken) {
+            return res.sendStatus(403)
+        }
+
+        jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, decoded) => {
+            if (err) {
+                console.log(err)
+                return res.sendStatus(500)
+            }
+
+            if (decoded !== undefined) {
+                const { accessToken, refreshToken: newrf } = signToken(decoded.id)
+
+                //pushes old token to the previous array and updates the current valid token
+                validToken.previous.push(validToken.refreshToken)
+                validToken.refreshToken = newrf
+                await validToken.save();
+                // await Token.updateOne({ refreshToken: refreshToken }, { refreshToken: newrf })
+                return res.json({
+                    accessToken: accessToken,
+                    refreshToken: newrf
+                })
+            }
+        })
+    } catch (err) {
+        console.log(err)
+        return res.sendStatus(500)
+    }
+})
+
+const signToken = (userID) => {
+    const accessToken = jwt.sign({ id: userID }, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '1h' })
+    const refreshToken = jwt.sign({ id: userID }, process.env.REFRESH_TOKEN_SECRET)
+
+    return { accessToken, refreshToken }
+}
+
+module.exports = router;

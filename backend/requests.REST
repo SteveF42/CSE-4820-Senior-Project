@@ -1,0 +1,37 @@
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+    "email":"steve3",
+    "password":"password123"
+}
+
+###
+
+POST http://localhost:5000/auth/logout
+Content-Type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTAxNCwiZXhwIjoxNjc0Nzg4NjE0fQ.7DW-nbpQcQxEQz7i69-yxMWaLhRfM_4Io7nmj4piVV0",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTAxNH0.0mx8RJzGp5ibcWxt-bYbVgjHqBmSkFTMfYsrb-9gec8"
+}
+
+###
+
+POST http://localhost:5000/auth/token
+Content-Type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTQ4NywiZXhwIjoxNjc0Nzg5MDg3fQ.EEKoxWkzG7a2or-6DxTQmdYqyyF77tFrY1WgC7ivlaY",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTQ4N30.YMZS9hnk_d1FniZNfH3k0H3PFnLbQvYJ1Et2Kq0PrVg"
+}
+
+###
+
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+    "email":"steve3",
+    "password":"password123"
+}
