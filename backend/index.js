@@ -12,8 +12,8 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'build')))
 
-app.use('/api', api)
 app.use('/auth',auth)
+app.use('/api', api)
 
 //lets react route the pages
 app.use('*', (req, res) => {

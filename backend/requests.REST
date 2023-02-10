@@ -1,29 +1,30 @@
+###authentication stuff
 POST http://localhost:5000/auth/register
 Content-Type: application/json
 
 {
-    "email":"steve3",
+    "email":"steve",
     "password":"password123"
 }
 
 ###
 
-POST http://localhost:5000/auth/logout
+DELETE http://localhost:5000/auth/logout
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTAxNCwiZXhwIjoxNjc0Nzg4NjE0fQ.7DW-nbpQcQxEQz7i69-yxMWaLhRfM_4Io7nmj4piVV0",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTAxNH0.0mx8RJzGp5ibcWxt-bYbVgjHqBmSkFTMfYsrb-9gec8"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NX0.3-Tcr6gB9wY62JzrBNCyjTv4BUyNLm9rwM18yf2MJLo"
 }
 
 ###
 
-POST http://localhost:5000/auth/token
+POST http://localhost:5000/auth/refresh
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTQ4NywiZXhwIjoxNjc0Nzg5MDg3fQ.EEKoxWkzG7a2or-6DxTQmdYqyyF77tFrY1WgC7ivlaY",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZDMzMDczNjdjNmM5MTgxYzU0MDlmNyIsImlhdCI6MTY3NDc4NTQ4N30.YMZS9hnk_d1FniZNfH3k0H3PFnLbQvYJ1Et2Kq0PrVg"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NX0.3-Tcr6gB9wY62JzrBNCyjTv4BUyNLm9rwM18yf2MJLo"
 }
 
 ###
@@ -32,6 +33,40 @@ POST http://localhost:5000/auth/login
 Content-Type: application/json
 
 {
-    "email":"steve3",
+    "email":"steve",
     "password":"password123"
 }
+
+###
+
+POST http://localhost:5000/auth/valid
+Content-Type: application/json
+
+{
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc",
+  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NX0.3-Tcr6gB9wY62JzrBNCyjTv4BUyNLm9rwM18yf2MJLo"
+}
+### ===========================================================================================
+
+### /history endpoints
+POST http://localhost:5000/api/history/
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc
+
+{
+  "recipeID" :"63abeb6d75a5ef02d53fcbdb"
+}
+
+###
+DELETE http://localhost:5000/api/history
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc
+
+{
+  "recipeID" :"63abeb6d75a5ef02d53fcbdb"
+}
+
+###
+GET http://localhost:5000/api/history
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMDYzMywiZXhwIjoxNjc2MDE0MjMzfQ.PYyTnNVw-uPxIH2dq4iB8KZNhrJHhl_MSPnCdC9IXLk

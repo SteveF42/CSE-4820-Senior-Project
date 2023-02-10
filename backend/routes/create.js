@@ -6,14 +6,19 @@ const {authenticateToken} = require('../middleware/isAuthenticated')
 
 
 
-router.get('/favorites', authenticateToken, (req,res) =>{
+router.get('/create', authenticateToken, (req,res) =>{
 
 })
 
-router.put('/favorites',authenticateToken, (req,res) =>{
+router.put('/create',authenticateToken, (req,res) =>{
 
 })
-router.delete('/favorites', authenticateToken, (req,res) =>{
+
+router.post('/create',authenticateToken, (req,res) =>{
+
+})
+
+router.delete('/create', authenticateToken, (req,res) =>{
 
 })
 module.exports = router;

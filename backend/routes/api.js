@@ -5,10 +5,11 @@ const jwt = require('jsonwebtoken')
 
 const favoriteRoutes = require('./favorite')
 const historyRoutes = require('./history')
-
+const create = require('./create')
 
 router.use('/favorite',favoriteRoutes)
 router.use('/history', historyRoutes)
+router.use('/create', create)
 
 
 module.exports = router;

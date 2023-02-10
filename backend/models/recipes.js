@@ -9,12 +9,12 @@ const recipeSchema = new mongoose.Schema({
     calories:Number,
     desc:String,
     protein:Number,
-    rating: Decimal128,
+    rating: "Decimal128",
     title:String,
     ingredients:[String],
     sodium:Number
 }) 
 
-const Recipe = mongoose.model('recipe',recipeSchema)
+const Recipe = mongoose.model('recipes',recipeSchema)
 
 module.exports = Recipe;

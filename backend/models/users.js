@@ -18,5 +18,5 @@ const userSchema = new mongoose.Schema({
     history : [{type: mongoose.SchemaTypes.ObjectId, ref:'recipes'}]
 })
 
-const User = mongoose.model('user',userSchema)
+const User = mongoose.model('users',userSchema)
 module.exports = User

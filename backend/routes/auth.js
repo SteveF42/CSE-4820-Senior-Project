@@ -78,7 +78,7 @@ router.post('/register', async (req, res) => {
 })
 
 // invalidates current refresh tokens
-router.post('/logout', async (req, res) => {
+router.delete('/logout', async (req, res) => {
     const refreshToken = req.body.token
 
     try {
@@ -94,7 +94,7 @@ router.post('/logout', async (req, res) => {
 })
 
 // refreshes API tokens while invalidating old refresh tokens
-router.post('/token', async (req, res) => {
+router.post('/refresh', async (req, res) => {
     const refreshToken = req.body.token
     //verifys the refresh token
 
@@ -102,6 +102,7 @@ router.post('/token', async (req, res) => {
         //if a refresh token is found in the previous, the whole family gets invalidated
         const staleToken = await Token.findOne({ previous: refreshToken })
         if (staleToken) {
+            // nullifies the whole family if an old refresh token is used
             await staleToken.delete()
             return res.sendStatus(403)
         }
@@ -131,6 +132,24 @@ router.post('/token', async (req, res) => {
             }
         })
     } catch (err) {
+        console.log(err)
+        return res.sendStatus(500)
+    }
+})
+
+// checks if a token is valid
+router.post('/valid', async(req,res)=>{
+    const refreshToken = req.body.token
+
+    try{
+
+        const token = Token.findOne({refreshToken:refreshToken})
+        if(token){
+            return res.sendStatus(200)
+        }
+        
+        return res.sendStatus(404)
+    }catch(err){
         console.log(err)
         return res.sendStatus(500)
     }
