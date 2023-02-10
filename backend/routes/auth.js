@@ -138,11 +138,10 @@ router.post('/refresh', async (req, res) => {
 })
 
 // checks if a token is valid
-router.post('/valid', async(req,res)=>{
+router.post('/valid', authenticateToken,async(req,res)=>{
     const refreshToken = req.body.token
 
     try{
-
         const token = Token.findOne({refreshToken:refreshToken})
         if(token){
             return res.sendStatus(200)

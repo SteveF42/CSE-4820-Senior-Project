@@ -13,18 +13,17 @@ DELETE http://localhost:5000/auth/logout
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc",
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NX0.3-Tcr6gB9wY62JzrBNCyjTv4BUyNLm9rwM18yf2MJLo"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzN30.lg2Ov9qSksURXLBGpLQqIpp0CMR9fli6x-I7faZWi1o"
 }
-
 ###
 
 POST http://localhost:5000/auth/refresh
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc",
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NX0.3-Tcr6gB9wY62JzrBNCyjTv4BUyNLm9rwM18yf2MJLo"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxNjE0MX0.Xbrv_OmS3p9mNXZegY1VDb1-tsZ_Cz7k4meFXybMp6I"
 }
 
 ###
@@ -43,15 +42,21 @@ POST http://localhost:5000/auth/valid
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc",
-  "refreshToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NX0.3-Tcr6gB9wY62JzrBNCyjTv4BUyNLm9rwM18yf2MJLo"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxNjA2MX0.htoWNVgXpV1VGKS8fSp4s_ZJrx5bJpOSRJ8Xpx333b4"
 }
-### ===========================================================================================
-
+### ==================================================================================================
 ### /history endpoints
+### ==================================================================================================
+GET http://localhost:5000/api/history
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
+
+###
+
 POST http://localhost:5000/api/history/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
 
 {
   "recipeID" :"63abeb6d75a5ef02d53fcbdb"
@@ -60,13 +65,34 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5Y
 ###
 DELETE http://localhost:5000/api/history
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMjY1NSwiZXhwIjoxNjc2MDE2MjU1fQ.1y9wQyhZ2n1xLqK5D76a_zlTSdKXyXHgQURwcmfsmLc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
+
+{
+  "recipeID" :"63abeb6d75a5ef02d53fcbdb"
+}
+### ==================================================================================================
+### /favorites endpoints
+### ==================================================================================================
+GET http://localhost:5000/api/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
+
+###
+
+POST http://localhost:5000/api/favorite
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
 
 {
   "recipeID" :"63abeb6d75a5ef02d53fcbdb"
 }
 
 ###
-GET http://localhost:5000/api/history
+
+DELETE http://localhost:5000/api/favorite
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxMDYzMywiZXhwIjoxNjc2MDE0MjMzfQ.PYyTnNVw-uPxIH2dq4iB8KZNhrJHhl_MSPnCdC9IXLk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
+
+{
+  "recipeID" :"63abeb6d75a5ef02d53fcbdb"
+}

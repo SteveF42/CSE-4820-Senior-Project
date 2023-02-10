@@ -27,20 +27,17 @@ router.post('/', authenticateToken, async (req, res) => {
         const user = await User.findById(req.user.id);
         if (!user) return res.status(404)
 
-        //if the recipe is already in the users history just move it to the beginning of the array
+        //filter the array and append the latest viewed object to the end
         const history = user.history;
         const recipeID = req.body.recipeID;
-        const index = history.indexOf(recipeID);
-
-        if (index > -1) {
-            history.splice(index,1)
-            history.push(recipeID)
-        } else {
-            //if its not in the history just add it
-            history.push(recipeID);
+        if(user.history.some(x=>x.recipe.toString() === recipeID)){
+            const arr = history.filter(x=> x.recipe.toString() !== recipeID);
+            arr.push({recipe: recipeID})
+            user.history = arr 
+        }else{
+            user.history.push({recipe:recipeID})
         }
 
-        user.history = history
         await user.save()
         return res.sendStatus(201);
     } catch (e) {
@@ -57,12 +54,9 @@ router.delete('/', authenticateToken, async (req, res) => {
 
         const history = user.history;
         const recipeID = req.body.recipeID
-        const index = history.indexOf(recipeID);
-        if (index < 0) return res.status(404);
-
-        history.splice(index, 1);
-        user.history = history
-
+        const arr = user.history.filter(x=> x.recipe.toString() !== recipeID)
+        
+        user.history = arr
         await user.save()
         return res.sendStatus(200);
     } catch (error) {
