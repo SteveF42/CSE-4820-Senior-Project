@@ -2,7 +2,7 @@ require('dotenv').config()
 const User = require('../models/users')
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
-const { authenticateToken } = require('../middleware/authenticateToken')
+const { authenticateToken } = require('../middleware/isAuthenticated')
 const Recipe = require('../models/recipes')
 const fetchUser = require('../middleware/fetchUser')
 

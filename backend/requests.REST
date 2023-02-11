@@ -22,8 +22,8 @@ POST http://localhost:5000/auth/refresh
 Content-Type: application/json
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxNjE0MX0.Xbrv_OmS3p9mNXZegY1VDb1-tsZ_Cz7k4meFXybMp6I"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjEwNDA4NywiZXhwIjoxNjc2MTA3Njg3fQ.dVseAGKJQ27W_LuuINxO7RH1lJS2T5kqoVyutidPZ4A",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjEwNDA4N30.zirCR2Gl_UOsx2Bb2CE8pRjwxEVXYi3-lIbyWvvphEo"
 }
 
 ###
@@ -40,26 +40,31 @@ Content-Type: application/json
 
 POST http://localhost:5000/auth/valid
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjE0OTAxOCwiZXhwIjoxNjc2MTUyNjE4fQ.6FOCgbxhmtsUy1i7QuapUd6TEF4B1hJnnR9gSJx51kg
 
 {
-  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo",
-  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxNjA2MX0.htoWNVgXpV1VGKS8fSp4s_ZJrx5bJpOSRJ8Xpx333b4"
+  "accessToken": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjE0OTAxOCwiZXhwIjoxNjc2MTUyNjE4fQ.6FOCgbxhmtsUy1i7QuapUd6TEF4B1hJnnR9gSJx51kg",
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjE0OTAxOH0.bdv5yzJHegXjAkod21RIrapGxTMKVpM4U0HWCdkNoc4"
 }
 ### ==================================================================================================
 ### /history endpoints
 ### ==================================================================================================
+
 GET http://localhost:5000/api/history
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
-
-###
-
-POST http://localhost:5000/api/history/
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjAxOTkzNywiZXhwIjoxNjc2MDIzNTM3fQ.tvp5jC46AAYmZ65S-J6JkvW-yu6WshJLwIXNRy2wGEo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjE0OTAxOCwiZXhwIjoxNjc2MTUyNjE4fQ.6FOCgbxhmtsUy1i7QuapUd6TEF4B1hJnnR9gSJx51kg
 
 {
-  "recipeID" :"63abeb6d75a5ef02d53fcbdb"
+  "count":1
+}
+###
+
+POST http://localhost:5000/api/history
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5YTUzZTJjMWViYzhlZDMyNyIsImlhdCI6MTY3NjE0OTAxOCwiZXhwIjoxNjc2MTUyNjE4fQ.6FOCgbxhmtsUy1i7QuapUd6TEF4B1hJnnR9gSJx51kg
+
+{
+  "recipeID" :"63abeb6d75a5ef02d53fcbe0"
 }
 
 ###
@@ -95,4 +100,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYzZTVlNDg5Y
 
 {
   "recipeID" :"63abeb6d75a5ef02d53fcbdb"
+}
+
+
+### ==================================================================================================
+### /recipe endpoint
+### ==================================================================================================
+
+GET http://localhost:5000/api/recipe/search
+Content-Type: application/json
+
+{
+  "categories":[],
+  "ingredients":["chicken"],
+  "count":10
 }

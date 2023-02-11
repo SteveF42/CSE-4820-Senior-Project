@@ -3,18 +3,21 @@ const User = require('../models/users')
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
 const { authenticateToken } = require('../middleware/isAuthenticated')
+const fetchUser = require('../middleware/fetchUser')
 
 
 //gets a users favorites list
-router.get('/', authenticateToken, async (req, res) => {
+//same issue as the histroy one, find a way to get first 10, 20 whatever parts
+// right now this is grabing the ENTIRE list from the users favorites. 
+// Maybe I can change this to grab the first 10-15 and use pagenation on the frontend
+router.get('/', authenticateToken, fetchUser, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id).populate('favorites')
-        const favorites = user.favorites
-        return res.json({
+        const favorites = await req.userModel.favorites.populate('favorites.recipes')
+        return res.status(200).json({
             favorites
         })
     } catch (error) {
-        return res.sendStatus(500)
+        return res.status(500).json({ message: error.message })
     }
 })
 
@@ -25,7 +28,7 @@ router.post('/', authenticateToken, async (req, res) => {
         if (!user) return res.sendStatus(404)
 
         const recipeID = req.body.recipeID
-        if (user.favorites.some(x=>x.recipe.toString() === recipeID))
+        if (user.favorites.some(x => x.recipe.toString() === recipeID))
             return res.sendStatus(304)
 
         user.favorites.push({

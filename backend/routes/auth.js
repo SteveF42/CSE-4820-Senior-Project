@@ -142,7 +142,7 @@ router.post('/valid', authenticateToken,async(req,res)=>{
     const refreshToken = req.body.token
 
     try{
-        const token = Token.findOne({refreshToken:refreshToken})
+        const token = await Token.findOne({refreshToken:refreshToken})
         if(token){
             return res.sendStatus(200)
         }

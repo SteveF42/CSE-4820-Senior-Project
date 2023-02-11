@@ -12,8 +12,13 @@ const recipeSchema = new mongoose.Schema({
     rating: "Decimal128",
     title:String,
     ingredients:[String],
-    sodium:Number
+    sodium:Number,
+    author: {
+        type: mongoose.SchemaTypes.ObjectId,
+        ref: 'users'
+    }
 }) 
+recipeSchema.index({"ingredients":"text"})
 
 const Recipe = mongoose.model('recipes',recipeSchema)
 
