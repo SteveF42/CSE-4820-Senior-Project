@@ -2,43 +2,49 @@ require('dotenv').config()
 const User = require('../models/users')
 const router = require('express').Router()
 const jwt = require('jsonwebtoken')
-const { authenticateToken } = require('../middleware/isAuthenticated')
+const { authenticateToken } = require('../middleware/authenticateToken')
 const Recipe = require('../models/recipes')
+const fetchUser = require('../middleware/fetchUser')
+
 
 // fetches the history of the user 
-router.get('/', authenticateToken, async (req, res) => {
-    try {
-        const user = await User.findById(req.user.id).populate('history')
-        if (!user) return res.status(404)
+// right now this is grabing the ENTIRE list from the users favorites. 
+// Maybe I can change this to grab the first 10-15 and use pagenation on the frontend
+router.get('/', authenticateToken, fetchUser, async (req, res) => {
+    const count = req.body.count || 10
+    const start = req.body.offset || 0
+    const end = start + count
+    console.log(count)
 
-        const history = user.history
+    try {
+        req.userModel.history = req.userModel.history.slice(start,end)
+        const userModel = await req.userModel.populate('history.recipe')
+        const history = userModel.history
         return res.status(200).json({
             history
         })
     } catch (e) {
         console.log(e)
-        return res.status(500)
+        return res.status(500).json({'message':e.message})
     }
 })
 
 // every time a user views a new recipe it adds it to the history
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', authenticateToken, fetchUser, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id);
-        if (!user) return res.status(404)
-
+        const userModel = req.userModel
         //filter the array and append the latest viewed object to the end
-        const history = user.history;
+        const history = userModel.history;
         const recipeID = req.body.recipeID;
-        if(user.history.some(x=>x.recipe.toString() === recipeID)){
-            const arr = history.filter(x=> x.recipe.toString() !== recipeID);
-            arr.push({recipe: recipeID})
-            user.history = arr 
-        }else{
-            user.history.push({recipe:recipeID})
+        if (userModel.history.some(x => x.recipe.toString() === recipeID)) {
+            const arr = history.filter(x => x.recipe.toString() !== recipeID);
+            arr.push({ recipe: recipeID })
+            userModel.history = arr
+        } else {
+            userModel.history.push({ recipe: recipeID })
         }
 
-        await user.save()
+        await userModel.save()
         return res.sendStatus(201);
     } catch (e) {
         console.log(e)
@@ -47,17 +53,14 @@ router.post('/', authenticateToken, async (req, res) => {
 })
 
 //deletes a specific item from the user history
-router.delete('/', authenticateToken, async (req, res) => {
+router.delete('/', authenticateToken, fetchUser, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id)
-        if (!user) return res.status(400);
-
-        const history = user.history;
+        const userModel = req.userModel
         const recipeID = req.body.recipeID
-        const arr = user.history.filter(x=> x.recipe.toString() !== recipeID)
-        
-        user.history = arr
-        await user.save()
+        const arr = userModel.history.filter(x => x.recipe.toString() !== recipeID)
+
+        userModel.history = arr
+        await userModel.save()
         return res.sendStatus(200);
     } catch (error) {
         console.log(error)
