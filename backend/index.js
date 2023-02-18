@@ -1,10 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser')
 const api = require('./routes/api.js')
-const auth = require('./routes/auth')
 const db = require('./mongoDB')
 const path = require('path')
 const app = express()
+const swaggerUi = require('swagger-ui-express')
+const swaggerDocument = require('./swagger-ui-express')
 
 app.use(bodyParser.urlencoded({
     extended: true
@@ -12,12 +13,12 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 app.use(express.static(path.join(__dirname, 'build')))
 
-app.use('/auth',auth)
-app.use('/api', api)
+app.use('/api/v1', api)
 
 //lets react route the pages
+app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('*', (req, res) => {
-    res.sendFile('build/index.html', { root: './server' })
+    res.sendFile('../frontend/build/index.html', { root: './server' })
 })
 
 
