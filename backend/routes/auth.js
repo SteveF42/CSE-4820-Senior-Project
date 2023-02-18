@@ -47,7 +47,7 @@ router.post('/register', async (req, res) => {
         const user = await User.findOne({ email: email })
         //checks if that username is already in use
         if (user) {
-            return res.sendStatus(409)
+            return res.status(409).json({message:"User already exists"})
         }
 
         //create a new user and sign tokens
@@ -73,13 +73,13 @@ router.post('/register', async (req, res) => {
     } catch (err) {
         //internal server error
         console.log(err)
-        return res.sendStatus(500)
+        return res.status(500).json({message: err.message})
     }
 })
 
-// invalidates current refresh tokens
-router.delete('/logout', async (req, res) => {
-    const refreshToken = req.body.token
+// invalidates current refresh tokens 
+router.post('/logout',authenticateToken, async (req, res) => {
+    const refreshToken = req.body.refreshToken
 
     try {
         const query = await Token.deleteOne({ refreshToken: refreshToken })
@@ -95,7 +95,7 @@ router.delete('/logout', async (req, res) => {
 
 // refreshes API tokens while invalidating old refresh tokens
 router.post('/refresh', async (req, res) => {
-    const refreshToken = req.body.token
+    const refreshToken = req.body.refreshToken
     //verifys the refresh token
 
     try {
@@ -104,11 +104,11 @@ router.post('/refresh', async (req, res) => {
         if (staleToken) {
             // nullifies the whole family if an old refresh token is used
             await staleToken.delete()
-            return res.sendStatus(403)
+            return res.sendStatus(401)
         }
         const validToken = await Token.findOne({ refreshToken: refreshToken })
         if (!validToken) {
-            return res.sendStatus(403)
+            return res.sendStatus(401)
         }
 
         jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, decoded) => {
@@ -125,7 +125,7 @@ router.post('/refresh', async (req, res) => {
                 validToken.refreshToken = newrf
                 await validToken.save();
                 // await Token.updateOne({ refreshToken: refreshToken }, { refreshToken: newrf })
-                return res.json({
+                return res.status(200).json({
                     accessToken: accessToken,
                     refreshToken: newrf
                 })
@@ -138,17 +138,17 @@ router.post('/refresh', async (req, res) => {
 })
 
 // checks if a token is valid
-router.post('/valid', authenticateToken,async(req,res)=>{
-    const refreshToken = req.body.token
+router.post('/valid', authenticateToken, async (req, res) => {
+    const refreshToken = req.body.refreshToken
 
-    try{
-        const token = await Token.findOne({refreshToken:refreshToken})
-        if(token){
+    try {
+        const token = await Token.findOne({ refreshToken: refreshToken })
+        if (token) {
             return res.sendStatus(200)
         }
-        
+
         return res.sendStatus(404)
-    }catch(err){
+    } catch (err) {
         console.log(err)
         return res.sendStatus(500)
     }
