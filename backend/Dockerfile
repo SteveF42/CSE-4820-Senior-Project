@@ -11,9 +11,6 @@ RUN npm install
 
 COPY --chown=dysh:dysh . .
 # web server port
-EXPOSE 5000
-# mongoDB port
-EXPOSE 27017
 CMD ["npm","run","start"]
 # ENTRYPOINT [ "npm","start" ] the same
 

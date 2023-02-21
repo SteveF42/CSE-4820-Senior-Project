@@ -4,9 +4,9 @@ const api = require('./routes/api.js')
 const db = require('./mongoDB')
 const path = require('path')
 const app = express()
-const swaggerUi = require('swagger-ui-express')
-const swaggerDocument = require('./swagger-ui-express')
 
+
+// April 7th
 app.use(bodyParser.urlencoded({
     extended: true
 }))
@@ -16,7 +16,6 @@ app.use(express.static(path.join(__dirname, 'build')))
 app.use('/api/v1', api)
 
 //lets react route the pages
-app.use('/api-docs',swaggerUi.serve, swaggerUi.setup(swaggerDocument))
 app.use('*', (req, res) => {
     res.sendFile('../frontend/build/index.html', { root: './server' })
 })

@@ -9,6 +9,7 @@ RUN npm run build
 # Step 2: Production
 FROM nginx:alpine
 COPY --from=build-stage /dysh/build /usr/share/nginx/html
+COPY --from=build-stage /dysh/default.conf /etc/nginx/conf.d/
 EXPOSE 80
 ENTRYPOINT ["nginx","-g","daemon off;"]
 # ENTRYPOINT [ "npm","start" ] the same
