@@ -17,6 +17,8 @@ services:
       dockerfile: Dockerfile
     environment:
       MONGODB_URL: mongodb://db:27017/dysh
+    ports:
+      - 5000:5000
     networks:
       - dysh-network
   db:
