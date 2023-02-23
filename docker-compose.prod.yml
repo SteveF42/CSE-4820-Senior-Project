@@ -10,19 +10,24 @@ services:
     networks:
       - dysh-network
   backend:
+    depends_on:
+      - db
     build:
       context: ./backend
       dockerfile: Dockerfile
     environment:
-      - MONGODB_URL:mongodb://db:27017/dysh
+      MONGODB_URL: mongodb://db:27017/dysh
     networks:
       - dysh-network
   db:
-    image: mongo:6.0.4
+    image: mongo:6.0.4-xenial
     ports:
       - 27017:27017
     volumes:
       - dysh:/data/db
+    networks:
+      - dysh-network
+    
 volumes:
   dysh:
 

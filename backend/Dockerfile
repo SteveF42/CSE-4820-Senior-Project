@@ -1,5 +1,4 @@
 FROM node:18.12.1-alpine
-ENV MONGODB_URL=mongodb://host.docker.internal:27017/dysh
 RUN addgroup dysh && adduser -S -G dysh dysh
 USER dysh
 
