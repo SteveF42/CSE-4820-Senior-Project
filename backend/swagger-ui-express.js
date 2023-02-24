@@ -15,7 +15,7 @@ module.exports = swaggerDocument = {
             description: 'development environment'
         },
         {
-            url: 'some-production-link.com',
+            url: 'fresh-dysh.com/api/v1',
             description: 'live build'
         }
     ],
