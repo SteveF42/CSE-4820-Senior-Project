@@ -2,24 +2,24 @@ const mongoose = require('mongoose')
 
 
 const recipeSchema = new mongoose.Schema({
-    directions: [String],
-    fat:Number,
-    date:Date,
-    categories:[String],
-    calories:Number,
-    desc:String,
-    protein:Number,
-    rating: "Decimal128",
+    category: String,
+    author:String,
+    category: String,
+    image:String,
+    ingredients: [String],
+    instructions: String,
+    instruction_list: [String],
+    nutrients: Object,
     title:String,
-    ingredients:[String],
-    sodium:Number,
-    author: {
+    total_time: Number,
+    yields:String,
+    userAuthor: {
         type: mongoose.SchemaTypes.ObjectId,
         ref: 'users'
     }
 }) 
-recipeSchema.index({"ingredients":"text"})
+// recipeSchema.index({"ingredients":"text"})
 
-const Recipe = mongoose.model('recipes',recipeSchema)
+const Recipes = mongoose.model('recipes',recipeSchema,'recipes')
 
-module.exports = Recipe;
+module.exports = Recipes;

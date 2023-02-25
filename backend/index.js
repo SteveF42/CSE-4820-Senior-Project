@@ -29,6 +29,6 @@ db.connect((err) => {
     }
 
     app.listen(process.env.BACKEND_PORT, () => {
-        console.log('app now listening on port 5000')
+        console.log(`app now listening on port ${process.env.BACKEND_PORT}`)
     })
 })

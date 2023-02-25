@@ -11,8 +11,8 @@ const fetchUser = require('../middleware/fetchUser')
 // right now this is grabing the ENTIRE list from the users favorites. 
 // Maybe I can change this to grab the first 10-15 and use pagenation on the frontend
 router.get('/', authenticateToken, fetchUser, async (req, res) => {
-    const count = req.body.count || 10
-    const start = req.body.offset || 0
+    const count = req.query.count || 10
+    const start = req.query.skip || 0
     const end = start + count
     console.log(count)
 

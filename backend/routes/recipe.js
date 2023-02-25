@@ -1,18 +1,15 @@
 require('dotenv').config()
-const User = require('../models/users')
 const router = require('express').Router()
-const jwt = require('jsonwebtoken')
-const { authenticateToken } = require('../middleware/isAuthenticated')
-const recipeParams = require('../middleware/fetchUser')
-const Recipe = require('../models/recipes')
+const Recipes = require('../models/recipes')
 
 //gets a users favorites list
 //poential parameters count
 router.get('/search', async (req, res) => {
     let count = req.query.count || 15;
-    let skip = req.query.skip || 0
+    let skip = req.query.skip || 0;
     let categories = req.query.categories || "";
     let ingredients = req.query.ingredients || "";
+    let cookingTime = req.query.cookingTime || null;
 
     count = parseInt(count)
 
@@ -37,18 +34,22 @@ router.get('/search', async (req, res) => {
                 $regex: categories,
                 $options: 'i'
             }
-        } : {}
+        } : {},
+        // ...cookingTime ? {
+        //     total_time : cookingTime
+        // } : {}        
     }
 
     console.log(payLoad)
 
     try {
-        if (!categories && !ingredients)
-            return res.status(200).json([])
+        // if (!categories && !ingredients)
+        //     return res.status(200).json([])
 
-        const menu = await Recipe.find(payLoad)
-            .skip(skip)
-            .limit(count)
+        const menu = await Recipes.find(payLoad)
+        .skip(skip)
+        .limit(count)
+        .exec()
         return res.status(200).json(menu)
     } catch (error) {
         return res.status(500).json({ message: error.message })

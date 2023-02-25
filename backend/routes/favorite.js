@@ -11,51 +11,57 @@ const fetchUser = require('../middleware/fetchUser')
 // right now this is grabing the ENTIRE list from the users favorites. 
 // Maybe I can change this to grab the first 10-15 and use pagenation on the frontend
 router.get('/', authenticateToken, fetchUser, async (req, res) => {
+    const count = req.query.count || 10
+    const start = req.query.skip || 0
+    const end = start + count
+    console.log(count)
+
     try {
-        const favorites = await req.userModel.favorites.populate('favorites.recipes')
+        req.userModel.history = req.userModel.history.slice(start,end)
+        const userModel = await req.userModel.populate('favorites.recipe')
+        const favorite = userModel.favorites
         return res.status(200).json({
-            favorites
+            favorite
         })
-    } catch (error) {
-        return res.status(500).json({ message: error.message })
+    } catch (e) {
+        console.log(e)
+        return res.status(500).json({'message':e.message})
     }
 })
 
 //adds a recipe to a users favorite list
-router.post('/', authenticateToken, async (req, res) => {
+router.post('/', authenticateToken, fetchUser, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id);
-        if (!user) return res.sendStatus(404)
+        const userModel = req.userModel
+        //filter the array and append the latest viewed object to the end
+        const favorites = userModel.favorites;
+        const recipeID = req.body.recipeID;
+        if (userModel.favorites.some(x => x.recipe.toString() === recipeID)) {
+            const arr = favorites.filter(x => x.recipe.toString() !== recipeID);
+            arr.push({ recipe: recipeID })
+            userModel.favorites = arr
+        } else {
+            userModel.favorites.push({ recipe: recipeID })
+        }
 
-        const recipeID = req.body.recipeID
-        if (user.favorites.some(x => x.recipe.toString() === recipeID))
-            return res.sendStatus(304)
-
-        user.favorites.push({
-            recipe: recipeID
-        })
-        await user.save()
-
-        return res.sendStatus(201)
-    } catch (error) {
-        console.log(error)
-        return res.sendStatus(500)
+        await userModel.save()
+        return res.sendStatus(201);
+    } catch (e) {
+        console.log(e)
+        return res.status(500)
     }
-
 })
 
 //removes a recipe from a users favorite list
-router.delete('/', authenticateToken, async (req, res) => {
+router.delete('/', authenticateToken, fetchUser, async (req, res) => {
     try {
-        const user = await User.findById(req.user.id);
-        if (!user) return res.sendStatus(404)
-
+        const userModel = req.userModel
         const recipeID = req.body.recipeID
-        const arr = user.favorites.filter(x => x.recipe.toString() !== recipeID)
-        user.favorites = arr
-        await user.save()
+        const arr = userModel.favorites.filter(x => x.recipe.toString() !== recipeID)
 
-        return res.sendStatus(200)
+        userModel.favorites = arr
+        await userModel.save()
+        return res.sendStatus(200);
     } catch (error) {
         console.log(error)
         return res.sendStatus(500)

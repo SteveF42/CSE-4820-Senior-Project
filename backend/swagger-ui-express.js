@@ -3,7 +3,7 @@ module.exports = swaggerDocument = {
     info: {
         version: '1.0.0',
         title: 'DYSH API',
-        description: 'API documentation for dysh',
+        description: 'API documentation for dysh. To access locked endpoints make sure to login or register and place the authorization token in auth section of swagger docs',
         contact: {
             name: 'Steve Flores',
             email: 'stevewflores43@gmail.com',
@@ -15,7 +15,7 @@ module.exports = swaggerDocument = {
             description: 'development environment'
         },
         {
-            url: 'fresh-dysh.com/api/v1',
+            url: 'http://fresh-dysh.com/api/v1',
             description: 'live build'
         }
     ],
@@ -35,6 +35,7 @@ module.exports = swaggerDocument = {
     },
     // endpoints
     paths: {
+        // authorization
         "/auth/login": {
             post: {
                 tags: ["Authentication"],
@@ -168,7 +169,7 @@ module.exports = swaggerDocument = {
                 tags: ["Authentication"],
                 security: [
                     {
-                        bearerAuth:[]
+                        bearerAuth: []
                     }
                 ],
                 summary: "Logout of existing user",
@@ -270,7 +271,7 @@ module.exports = swaggerDocument = {
             post: {
                 tags: ["Authentication"],
                 security: [{
-                    bearerAuth:[]
+                    bearerAuth: []
                 }],
                 summary: "Check a current access token",
                 description: "Test if your current access token is still valid",
@@ -300,39 +301,288 @@ module.exports = swaggerDocument = {
                 }
             },
         },
-
-        "/recipe/search":{
+        // history
+        "/history": {
             get: {
-                tags: ["recipe"],
-                summary: "Get a recipe",
-                description: "get a list of recipes from the database",
+                tags: ["history"],
+                security: [{
+                    bearerAuth: []
+                }],
+                summary: "Gets user history",
+                description: "Gets a number of recipes from users history search",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+                parameters: [
+                    {
+                        in: "query",
+                        name: "count",
+                        schema: {
+                            type: "number"
+                        },
+                        description: "Number of items to querry"
+                    },
+                    {
+                        in: "query",
+                        name: "skip",
+                        schema: {
+                            type: "number"
+                        },
+                        description: "Number of items to skip"
+                    }
+                ]
+            },
+            post: {
+                tags: ["history"],
+                security: [{
+                    bearerAuth: []
+                }],
+                summary: "Add item to user history",
+                description: "Updates the the user with a history of past recipes they have viewed",
                 responses: {
                     '200': {
                         description: "OK",
                     },
                 },
                 requestBody: {
-                    description: "query parameters for a recipe",
-                    required: false,
+                    description: "body example",
+                    required: true,
                     content: {
                         'application/json': {
                             schema: {
                                 type: 'object',
+                                description: 'ID of the recipe to be added',
                                 properties: {
-                                    ingredients: {
+                                    recipeID: {
                                         type: "string"
                                     },
-                                    categories:{
-                                        type: "string"
-                                    },
-                                    count :{
-                                        type: "integer"
-                                    }
                                 }
                             }
                         }
                     }
                 }
+            },
+            delete: {
+                tags: ["history"],
+                security: [{
+                    bearerAuth: []
+                }],
+                summary: "Remove recipe from user history",
+                description: "Updates user recipes by removing a single entry",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+                requestBody: {
+                    description: "body example",
+                    required: true,
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                description: 'ID of the recipe to be added',
+                                properties: {
+                                    recipeID: {
+                                        type: "string"
+                                    },
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        // favorites
+        "/favorite": {
+            get: {
+                tags: ["favorite"],
+                security: [{
+                    bearerAuth: []
+                }],
+                summary: "Gets user favorites",
+                description: "Finds all recipes that the user has added to their favorite list",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+                parameters: [
+                    {
+                        in: "query",
+                        name: "count",
+                        schema: {
+                            type: "number"
+                        },
+                        description: "Number of items to querry"
+                    },
+                    {
+                        in: "query",
+                        name: "skip",
+                        schema: {
+                            type: "number"
+                        },
+                        description: "Number of items to skip"
+                    }
+                ]
+            },
+            post: {
+                tags: ["favorite"],
+                security: [{
+                    bearerAuth: []
+                }],
+                summary: "Add item to user favorites",
+                description: "Adds a recipe to a user favorites list",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+                requestBody: {
+                    description: "body example",
+                    required: true,
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                description: 'ID of the recipe to be added',
+                                properties: {
+                                    recipeID: {
+                                        type: "string"
+                                    },
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            delete: {
+                tags: ["favorite"],
+                security: [{
+                    bearerAuth: []
+                }],
+                summary: "Remove recipe from user history",
+                description: "Updates user recipes by removing a single entry",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+                requestBody: {
+                    description: "body example",
+                    required: true,
+                    content: {
+                        'application/json': {
+                            schema: {
+                                type: 'object',
+                                description: 'ID of the recipe to be added',
+                                properties: {
+                                    recipeID: {
+                                        type: "string"
+                                    },
+                                }
+                            }
+                        }
+                    }
+                }
+
+            }
+        },
+        // recipe
+        "/recipe/search": {
+            get: {
+                tags: ["recipe"],
+                summary: "Get a recipe",
+                description: "find a recipe from the database",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+                parameters: [
+                    {
+                        in: "query",
+                        name: "ingredients",
+                        schema: {
+                            type: "string"
+                        },
+                        description: "Ingredients separated by commas. Lettuce, tomateo, bread"
+                    },
+                    {
+                        in: "query",
+                        name: "category",
+                        schema: {
+                            type: "string"
+                        },
+                        description: "category separated by comas. Dessert, cookie, chocolate"
+                    },
+                    {
+                        in: "query",
+                        name: "count",
+                        schema: {
+                            type: "number"
+                        },
+                        description: "number of quarries to be returned (max 100, min 15)"
+                    },
+                    {
+                        in: "query",
+                        name: "skip",
+                        schema: {
+                            type: "number"
+                        },
+                        description: "number of quarries to be skipped (default 0)"
+                    },
+                    {
+                        in: "query",
+                        name: "cookTime",
+                        schema: {
+                            type: "number"
+                        },
+                        description: "how long a recipe will take to make"
+                    }
+                ]
+            },
+            post: {
+                security: [{
+                    bearerAuth: []
+                }],
+                tags: ["recipe"],
+                summary: "Create a recipe",
+                description: "Create a new recipe generated by the user (Note, will implement these later since I need to figure out how associativity is going to work between recipe and user)",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+            },
+            delete:{
+                security: [{
+                    bearerAuth: []
+                }],
+                tags: ["recipe"],
+                summary: "Delete a recipe",
+                description: "Deletes a user created recipe",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
+            },
+            put:{
+                security: [{
+                    bearerAuth: []
+                }],
+                tags: ["recipe"],
+                summary: "Update a recipe",
+                description: "Update a user created recipe",
+                responses: {
+                    '200': {
+                        description: "OK",
+                    },
+                },
             },
         }
     }
