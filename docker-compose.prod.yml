@@ -2,6 +2,7 @@ version: '3.4'
 
 services:
   frontend:
+    restart: unless-stopped
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
@@ -10,28 +11,25 @@ services:
     networks:
       - dysh-network
   backend:
-    depends_on:
-      - db
+    # depends_on:
+    #   - db
     build:
       context: ./backend
       dockerfile: Dockerfile
-    environment:
-      MONGODB_URL: mongodb://db:27017/dysh
-    ports:
-      - 5000:5000
+    # environment:
+      # MONGODB_URL: mongodb://db:27017/dysh
     networks:
       - dysh-network
-  db:
-    image: mongo:6.0.4
-    ports:
-      - 27017:27017
-    volumes:
-      - dysh:/data/db
-    networks:
-      - dysh-network
+# uncomment to run a mongo container and connect to it using the commented out environment variable
+#   db:
+#     image: mongo:6.0.4
+#     ports:
+#       - 27017:27017
+#     volumes:
+#       - dysh:/data/db
     
-volumes:
-  dysh:
+# volumes:
+#   dysh:
 
 networks:
   dysh-network:
