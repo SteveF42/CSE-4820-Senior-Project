@@ -2,13 +2,13 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /ubuntu/dysh
-# hooks:
-#   ApplicationStart:
-#     - location: scripts/run_docker
-#       timeout: 300
-#       runas: root
-#   ApplicationStop:
-#     - location: scripts/stop_server
-#       timeout: 300
-#       runas: root
+    destination: /home/ubuntu/dysh
+hooks:
+  ApplicationStart:
+    - location: scripts/run_docker
+      timeout: 300
+      runas: root
+  ApplicationStop:
+    - location: scripts/stop_server
+      timeout: 300
+      runas: root
