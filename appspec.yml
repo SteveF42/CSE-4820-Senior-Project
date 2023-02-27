@@ -5,10 +5,10 @@ files:
     destination: /home/ubuntu/dysh
 hooks:
   ApplicationStart:
-    - location: scripts/run_docker
+    - location: scripts/run_docker.sh
       timeout: 300
       runas: root
   ApplicationStop:
-    - location: scripts/stop_server
+    - location: scripts/stop_server.sh
       timeout: 300
       runas: root
