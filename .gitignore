@@ -2,7 +2,7 @@
 
 #backend dependecies
 /backend/node_modules
-/backend/.env
+
 
 
 
@@ -33,3 +33,5 @@
 dysh.pem
 .vscode
 connect_instance.cmd
+.env
+buildspec.yml
