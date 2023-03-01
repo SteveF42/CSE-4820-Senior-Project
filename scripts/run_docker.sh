@@ -1,1 +1,1 @@
-docker-compose -f docker-compose.prod.yml up -d
+cd /home/ubuntu/dysh && docker-compose -f docker-compose.prod.yml up -d
