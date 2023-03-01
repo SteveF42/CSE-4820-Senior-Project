@@ -1,1 +1,1 @@
-cd /home/ubuntu/dysh docker-compose -f docker-compose.prod.yml build
+cd /home/ubuntu/dysh && docker-compose -f docker-compose.prod.yml build
