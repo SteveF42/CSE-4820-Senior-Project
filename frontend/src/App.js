@@ -11,11 +11,11 @@ function App() {
         </p>
         <a
           className="App-link"
-          href="https://reactjs.org"
+          href="http://fresh-dysh.com/api/v1/docs"
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Access dysh API
         </a>
       </header>
     </div>
