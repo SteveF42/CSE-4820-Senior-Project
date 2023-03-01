@@ -1,1 +1,1 @@
-cd /home/ubuntu/dysh && docker-compose --env-file ../.env -f docker-compose.prod.yml up -d
+docker-compose -f docker-compose.prod.yml up -d

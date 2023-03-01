@@ -5,6 +5,10 @@ files:
     destination: /home/ubuntu/dysh
 file_exists_behavior: OVERWRITE
 hooks:
+  AfterInstall:
+    - location: scripts/run_build.sh
+      timeout: 500
+      runas: root
   ApplicationStart:
     - location: scripts/run_docker.sh
       timeout: 300
