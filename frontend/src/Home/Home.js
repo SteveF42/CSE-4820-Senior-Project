@@ -1,18 +1,29 @@
 import React from 'react'
 import NavBar from '../components/NavBar'
 import './Home.css'
-import TextField from '@mui/material/TextField'
 import Button from '@mui/material/Button'
 import chicken from './chicken.png'
+import SearchIcon from '@mui/icons-material/Search';
+import { TextFieldMain } from '../components/dyshText'
+import { YellowButton } from '../components/dyshButton'
 
 const Home = () => {
   return (
-    <div>
+    <div className='home-container'>
       <NavBar />
 
       <div className='page-content-home'>
         <div className='search-area'>
-          <TextField sx={{width:'100%'}} id="outlined-basic" label="Search Recipes" variant='outlined' />
+          <TextFieldMain 
+            
+            sx={{width:'100%'}}
+            label={
+              <>
+                <SearchIcon className='searchLabel' sx={{color:'grey','paddingRight':'8px'}}/>
+                Search Recipe
+              </>
+            }
+            />
         </div>
         <div className='text-area'>
           <h1>Welcome to <b>D Y S H</b></h1>
@@ -21,10 +32,12 @@ const Home = () => {
             You have the ingredients, we know the meal.
           </p>
         </div>
-        <Button variant='contained' style={{ 'borderRadius': '20px' }} sx={{ backgroundColor: '#FFA439' }}>Let's start cooking</Button>
-        <img src={chicken}></img>
+        <YellowButton variant='contained' style={{ 'borderRadius': '20px' }} sx={{ backgroundColor: '#FFA439' }}>Let's start cooking</YellowButton>
+        <div className='img-container'>
+          <img src={chicken}></img>
+        </div>
       </div>
-    </div>
+    </div >
   )
 }
 
