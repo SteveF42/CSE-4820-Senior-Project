@@ -16,7 +16,7 @@ const Home = () => {
         <div className='search-area'>
           <TextFieldMain 
             
-            sx={{width:'100%'}}
+            sx={{width:'100%',zIndex:0}}
             label={
               <>
                 <SearchIcon className='searchLabel' sx={{color:'grey','paddingRight':'8px'}}/>

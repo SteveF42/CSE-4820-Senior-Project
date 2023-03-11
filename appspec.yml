@@ -7,13 +7,13 @@ file_exists_behavior: OVERWRITE
 hooks:
   AfterInstall:
     - location: scripts/run_build.sh
-      timeout: 1000
+      timeout: 10000
       runas: root
   ApplicationStart:
     - location: scripts/run_docker.sh
-      timeout: 1000
+      timeout: 10000
       runas: root
   ApplicationStop:
     - location: scripts/stop_server.sh
-      timeout: 1000
+      timeout: 10000
       runas: root

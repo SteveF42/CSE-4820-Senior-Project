@@ -2,11 +2,11 @@ version: '3.4'
 
 services:
   frontend:
+    image: stevef2257/dysh-frontend:latest
     restart: unless-stopped
     build:
       context: ./frontend
       dockerfile: Dockerfile.prod
-    image: stevef2257/dysh-frontend:latest
     ports:
       - 80:80
     networks:
@@ -14,16 +14,16 @@ services:
   backend:
     # depends_on:
     #   - db
+    image: stevef2257/dysh-backend:latest
     build:
       context: ./backend
       dockerfile: Dockerfile
-    image: stevef2257/dysh-backend:latest
     environment:
       - MONGODB_URL=$MONGODB_URL
       - ACCESS_TOKEN_SECRET=$ACCESS_TOKEN_SECRET
       - REFRESH_TOKEN_SECRET=$REFRESH_TOKEN_SECRET
       - BACKEND_PORT=$BACKEND_PORT
-    # environment:
+      # environment:
       # MONGODB_URL: mongodb://db:27017/dysh
     networks:
       - dysh-network
@@ -34,7 +34,7 @@ services:
 #       - 27017:27017
 #     volumes:
 #       - dysh:/data/db
-    
+
 # volumes:
 #   dysh:
 
