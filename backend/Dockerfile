@@ -1,15 +1,17 @@
 FROM node:18.12.1-alpine
 RUN addgroup dysh && adduser -S -G dysh dysh
+RUN mkdir data
+RUN chown dysh data
+
 USER dysh
 
 WORKDIR /dysh
-RUN mkdir data
 
 COPY --chown=dysh:dysh package*.json ./
 RUN npm install
 
 EXPOSE 5000
-COPY --chown=dysh:dysh . ./
+COPY --chown=dysh:dysh ./ ./
 # web server port
 CMD ["npm","run","start"]
 # ENTRYPOINT [ "npm","start" ] the same
