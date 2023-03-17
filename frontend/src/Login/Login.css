@@ -1,0 +1,104 @@
+.register-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    color: black;
+    width: 100vw;
+}
+
+.left-side-hide{
+    transform: translate(-60%);
+}
+
+.register-left-side {
+    flex: min(50%, 700px);
+    min-width: max(40%,483px);
+    background-color: white;
+    border-radius: 0 30px 30px 0;
+    transition:0.5s;
+}
+
+@media (max-width:782px) {
+    .register-left-side {
+        border-radius: 0px 0px 30px 30px;
+    }
+}
+
+
+.dysh-logo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    font-size: 2.3rem;
+    font-weight: 900;
+    margin: 2rem;
+}
+
+.dysh-logo h1 {
+    margin: 2rem;
+    font-weight: 800;
+}
+
+.left-form-information {
+    display: flex;
+    margin: max(8rem, 15vh) 3rem 0;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.register-title h1 {
+    font-size: 2.5rem;
+    margin: 0;
+}
+
+.register-title p {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.register-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+}
+
+.register-form label {
+    margin-top: 0.5rem;
+    color: grey;
+}
+
+.button-group {
+    padding: 2rem;
+}
+
+
+
+.register-right-side {
+    flex: 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+.register-img {
+    height: auto;
+}
+
+.register-img img {
+    width: 100%;
+    object-fit: scale-down;
+    display: block;
+}
+@media (max-width:665px) {
+    .register-img img{
+        width: auto;
+    }
+}

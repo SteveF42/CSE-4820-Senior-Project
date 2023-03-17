@@ -4,43 +4,57 @@ import CloseIcon from '@mui/icons-material/Close';
 import HistoryIcon from '@mui/icons-material/History';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchIcon from '@mui/icons-material/Search';
 import './NavBar.css'
 import { Icon } from '@mui/material';
+import { Link } from 'react-router-dom'
+
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
 
+
+  const blurBackground = (e) => {
+    return () => {
+      setOpen(!open)
+    }
+  }
+
   return (
     <div id='navbar'>
-      <div className='navBar-closed' onClick={() => { setOpen(!open) }}>
+      <div className='navBar-closed' onClick={blurBackground()}>
         <MenuIcon sx={{ fontSize: '2.5rem' }} />
-        <label>D Y S H </label>
+        <label>D Y S H</label>
       </div>
 
-      <div className={ open ? `navBar-open navBar-hide` : 'navBar-open'}>
-        <Icon className='navBar-close-icon' onClick={() => setOpen(false)}>
+      <div className={open ? `navBar-hide navBar-open` : 'navbar-dark navBar-open'}>
+        <Icon className='navBar-close-icon' onClick={blurBackground()}>
           <CloseIcon></CloseIcon>
         </Icon>
-        <h1>D Y S H .</h1>
-        <ul className='navBar-items'>
-          <li className='navBar-item'>
+        <h1> <Link className='item-link' to='/'>D Y S H .</Link></h1>
+        <div className='navBar-items'>
+          <Link className='item-link navBar-item' to='/recipe'>
             <SearchIcon />
             <label>Find Recipes</label>
-          </li>
-          <li className='navBar-item'>
+          </Link>
+          <Link className='item-link navBar-item' to='/history'>
             <HistoryIcon />
             <label>History</label>
-          </li>
-          <li className='navBar-item'>
+          </Link>
+          <Link className='item-link navBar-item' to='/favorites'>
             <FavoriteBorderIcon />
             <label>Favorites</label>
-          </li>
-          <li className='navBar-item'>
+          </Link>
+          <Link className='item-link navBar-item' to='/order'>
             <AssignmentOutlinedIcon />
             <label>Orders</label>
-          </li>
-        </ul>
+          </Link>
+          <Link className='item-link navBar-item' to='/login'>
+            <AccountCircleOutlinedIcon />
+            <label>Register/login</label>
+          </Link>
+        </div>
       </div>
     </div>
   )
