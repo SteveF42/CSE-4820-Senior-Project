@@ -1,9 +1,9 @@
 #Step 1: Build
 FROM node:18.12.1-alpine AS build-stage
 WORKDIR /dysh
-COPY package*.json .
+COPY package*.json ./
 RUN npm install
-COPY . .
+COPY . ./
 RUN npm run build
 
 # Step 2: Production

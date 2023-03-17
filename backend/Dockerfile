@@ -5,11 +5,11 @@ USER dysh
 WORKDIR /dysh
 RUN mkdir data
 
-COPY --chown=dysh:dysh package*.json .
+COPY --chown=dysh:dysh package*.json ./
 RUN npm install
 
 EXPOSE 5000
-COPY --chown=dysh:dysh . .
+COPY --chown=dysh:dysh . ./
 # web server port
 CMD ["npm","run","start"]
 # ENTRYPOINT [ "npm","start" ] the same
