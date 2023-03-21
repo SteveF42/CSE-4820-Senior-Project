@@ -1,0 +1,21 @@
+.food-card-container{
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    color: black;
+}
+.food-card-img{
+    flex-grow: 1;
+    width: auto;
+}
+.food-card-img > img{
+    width: 100%;
+}
+
+.food-card-details{
+    flex-grow: 2;
+}
+.food-card-details h2 span{
+    margin: 0;
+}

@@ -2,10 +2,11 @@ import React from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { TextFieldMain } from '../components/dyshText'
 
-const MainSearch = () => {
+const MainSearch = (props) => {
   return (
-    <>
+    <div {...props}>
       <TextFieldMain
+        
         sx={{ width: '100%', zIndex: 0 }}
         label={
           <>
@@ -14,7 +15,7 @@ const MainSearch = () => {
           </>
         }
       />
-    </>
+    </div>
   )
 }
 

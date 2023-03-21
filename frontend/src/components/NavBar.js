@@ -34,7 +34,7 @@ const NavBar = () => {
         </Icon>
         <h1> <Link className='item-link' to='/'>D Y S H .</Link></h1>
         <div className='navBar-items'>
-          <Link className='item-link navBar-item' to='/recipe'>
+          <Link className='item-link navBar-item' to='/recipe/63f9d267ccf9b1c9f1b923e8'>
             <SearchIcon />
             <label>Find Recipes</label>
           </Link>
