@@ -542,6 +542,14 @@ module.exports = swaggerDocument = {
                             type: "number"
                         },
                         description: "how long a recipe will take to make"
+                    },
+                    {
+                        in: "query",
+                        name: "recipeID",
+                        schema: {
+                            type: "string"
+                        },
+                        description: "direct recipeID to pass through"
                     }
                 ]
             },

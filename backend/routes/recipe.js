@@ -10,6 +10,7 @@ router.get('/search', async (req, res) => {
     let categories = req.query.categories || "";
     let ingredients = req.query.ingredients || "";
     let cookingTime = req.query.cookingTime || null;
+    let recipeID = req.query.recipeID || null;
 
     count = parseInt(count)
 
@@ -35,6 +36,9 @@ router.get('/search', async (req, res) => {
                 $options: 'i'
             }
         } : {},
+        ...recipeID ? {
+            _id : recipeID
+        }: {}
         // ...cookingTime ? {
         //     total_time : cookingTime
         // } : {}        

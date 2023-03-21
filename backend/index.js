@@ -15,9 +15,9 @@ app.use(express.static(path.join(__dirname, 'build')))
 app.use('/api/v1', api)
 
 //lets react route the pages
-app.use('*', (req, res) => {
-    res.sendFile('../frontend/build/index.html', { root: './server' })
-})
+// app.use('*', (req, res) => {
+//     res.sendFile('../frontend/build/index.html', { root: './server' })
+// })
 
 
 //connects to the db before app launches
