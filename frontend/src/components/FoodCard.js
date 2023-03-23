@@ -1,9 +1,9 @@
 import React from 'react'
 import './FoodCard.css'
 
-const FoodCard = ({title,calCount,img}) => {
+const FoodCard = ({title,calCount,img,className,...props}) => {
   return (
-    <div className='food-card-container'>
+    <div className={`food-card-container ${className}`} {...props}>
         <div className='food-card-img'>
             <img src={img}></img>
         </div>

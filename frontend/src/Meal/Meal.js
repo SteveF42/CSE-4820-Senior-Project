@@ -5,6 +5,7 @@ import useFetch from '../hooks/useFetch'
 import './Meal.css'
 import star from './reviewStar.png'
 import { useParams } from 'react-router-dom'
+import axios from 'axios'
 
 const Meal = () => {
     const { recipeId } = useParams()

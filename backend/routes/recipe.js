@@ -21,7 +21,6 @@ router.get('/search', async (req, res) => {
     categories = categories.split(',')
         .map(x => x.trim())
         .join('|')
-    console.log(ingredients)
 
     const payLoad = {
         ...req.query.ingredients ? {
@@ -38,10 +37,10 @@ router.get('/search', async (req, res) => {
         } : {},
         ...recipeID ? {
             _id : recipeID
-        }: {}
-        // ...cookingTime ? {
-        //     total_time : cookingTime
-        // } : {}        
+        }: {},
+        ...cookingTime ? {
+            total_time : cookingTime
+        } : {}        
     }
 
     console.log(payLoad)
