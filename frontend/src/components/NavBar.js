@@ -34,7 +34,7 @@ const NavBar = () => {
         </Icon>
         <h1> <Link className='item-link' to='/'>D Y S H .</Link></h1>
         <div className='navBar-items'>
-          <Link className='item-link navBar-item' to='/recipe/63f9d267ccf9b1c9f1b923e8'>
+          <Link className='item-link navBar-item' to='/recipe/'>
             <SearchIcon />
             <label>Find Recipes</label>
           </Link>
@@ -46,13 +46,13 @@ const NavBar = () => {
             <FavoriteBorderIcon />
             <label>Favorites</label>
           </Link>
-          <Link className='item-link navBar-item' to='/order'>
-            <AssignmentOutlinedIcon />
-            <label>Orders</label>
-          </Link>
           <Link className='item-link navBar-item' to='/login'>
             <AccountCircleOutlinedIcon />
             <label>Register/login</label>
+          </Link>
+          <Link className='item-link navBar-item' to='/order' aria-disabled='true'>
+            <AssignmentOutlinedIcon />
+            <label>Orders</label>
           </Link>
         </div>
       </div>

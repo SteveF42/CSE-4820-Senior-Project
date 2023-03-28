@@ -25,7 +25,7 @@
 }
 
 .history-row::-webkit-scrollbar {
-    height: 0.9em;
+    height: 0.7em;
 }
 
 .history-row::-webkit-scrollbar-track {

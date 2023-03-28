@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import MainSearch from '../components/MainSearch'
-import NavBar from '../components/NavBar'
-import './History.css'
 import { CardRows } from '../components/CardRows'
+import MainSearch from '../components/MainSearch';
+import NavBar from '../components/NavBar';
 
-const History = () => {
+
+const Favorites = () => {
   const [load, setLoad] = useState(true)
   const delay = 100; //ms
   useEffect(() => {
@@ -19,14 +19,13 @@ const History = () => {
         <MainSearch className='history-search' />
       </div>
       <div className='history-container'>
-        <h1>Your History</h1>
+        <h1>Your Favorites</h1>
         <div className={`history-information`}>
-          <CardRows date={'February 2023'} totalDelay={0}/>
-          <CardRows date={'February 2023'} totalDelay={200}/>
+          <CardRows date={'February 2023'} totalDelay={0} />
         </div>
       </div>
     </div>
   )
 }
 
-export default History
+export default Favorites
