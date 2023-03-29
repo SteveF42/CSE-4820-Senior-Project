@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
+  const isVerified = window.localStorage.getItem('verified') === 'true'
 
 
   const blurBackground = (e) => {
@@ -46,10 +47,17 @@ const NavBar = () => {
             <FavoriteBorderIcon />
             <label>Favorites</label>
           </Link>
-          <Link className='item-link navBar-item' to='/login'>
-            <AccountCircleOutlinedIcon />
-            <label>Register/login</label>
-          </Link>
+          {isVerified ?
+            <Link className='item-link navBar-item' to='/logout'>
+              <AccountCircleOutlinedIcon />
+              <label>Logout</label>
+            </Link>
+            :
+            <Link className='item-link navBar-item' to='/register'>
+              <AccountCircleOutlinedIcon />
+              <label>Register/login</label>
+            </Link>
+          }
           <Link className='item-link navBar-item' to='/order' aria-disabled='true'>
             <AssignmentOutlinedIcon />
             <label>Orders</label>

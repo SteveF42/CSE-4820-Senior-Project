@@ -1,12 +1,15 @@
-import React from 'react'
-import { Navigate, Outlet } from 'react-router-dom'
 
-const ProtectedRoutes = ({user, children}) => {
-    if(!user){
-        return <Navigate to='/' replace/>
+import { Navigate, Outlet, useLocation } from 'react-router-dom'
+import useAuth from '../hooks/useAuth'
+
+
+const ProtectedRoutes = () => {
+    const location = useLocation()
+    const { auth, pending, error} = useAuth(location.pathname)
+
+    if (!pending) {
+        return auth?.status == 200 ? <Outlet /> : <Navigate to='/register' />
     }
-
-    return children ? children : <Outlet />
 }
 
 export default ProtectedRoutes

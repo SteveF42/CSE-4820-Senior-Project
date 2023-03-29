@@ -154,6 +154,9 @@ module.exports = swaggerDocument = {
                                     password: {
                                         type: "string"
                                     },
+                                    username:{
+                                        type: "string"
+                                    }
                                 }
                             },
                             items: {
@@ -167,11 +170,6 @@ module.exports = swaggerDocument = {
         "/auth/logout": {
             post: {
                 tags: ["Authentication"],
-                security: [
-                    {
-                        bearerAuth: []
-                    }
-                ],
                 summary: "Logout of existing user",
                 description: "Clears existing active and refresh tokens from mongodb",
                 responses: {

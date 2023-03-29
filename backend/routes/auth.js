@@ -42,6 +42,7 @@ router.post('/login', async (req, res) => {
 router.post('/register', async (req, res) => {
     const email = req.body.email
     const password = req.body.password
+    const username = req.body.username
 
     try {
         const user = await User.findOne({ email: email })
@@ -53,7 +54,8 @@ router.post('/register', async (req, res) => {
         //create a new user and sign tokens
         const newUser = new User({
             email: email,
-            password: password
+            password: password,
+            username: username
         })
 
         const savedUser = await newUser.save()
@@ -78,7 +80,7 @@ router.post('/register', async (req, res) => {
 })
 
 // invalidates current refresh tokens 
-router.post('/logout',authenticateToken, async (req, res) => {
+router.post('/logout', async (req, res) => {
     const refreshToken = req.body.refreshToken
 
     try {
