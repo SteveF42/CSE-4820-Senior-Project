@@ -9,6 +9,9 @@ const History = () => {
   const delay = 100; //ms
   useEffect(() => {
     setLoad(false)
+    return () => {
+      setLoad(true)
+    }
   }, [])
 
   return (
@@ -21,8 +24,8 @@ const History = () => {
       <div className='history-container'>
         <h1>Your History</h1>
         <div className={`history-information`}>
-          <CardRows date={'February 2023'} totalDelay={0}/>
-          <CardRows date={'February 2023'} totalDelay={200}/>
+          <CardRows date={'February 2023'} totalDelay={0} />
+          <CardRows date={'February 2023'} totalDelay={200} />
         </div>
       </div>
     </div>

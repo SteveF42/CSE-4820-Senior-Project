@@ -6,7 +6,8 @@ import Favorites from './Favorites';
 import Recipe from './Recipe';
 import ProtectedRoutes from './components/ProtectedRoutes';
 import Register from './Register';
-import Logout from './Logout/Logout';
+import Logout from './Logout';
+import Login from './Login';
 
 function App() {
 
@@ -16,6 +17,7 @@ function App() {
         <Route path="/" element={<Home />} exact />
         <Route path='/register' element={<Register />} />
         <Route path='/logout' element={<Logout />} />
+        <Route path='/login' element={<Login />} />
         <Route path='/recipe' element={<Recipe />} />
         <Route path='/recipe/:recipeId' element={<Meal />} />
 

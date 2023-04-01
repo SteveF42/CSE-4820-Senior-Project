@@ -14,7 +14,8 @@ router.post('/login', async (req, res) => {
     //encrypt passwords
 
     try {
-        const user = await User.findOne({ email: email, password: password })
+        const user = await User.findOne({ $or:[{email: email},{username:email}], password: password })
+        //a user is found with credentials
         if (user) {
             //send token
             const { accessToken, refreshToken } = signToken(user._id.toString())

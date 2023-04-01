@@ -12,6 +12,9 @@ const Home = () => {
 
   useEffect(() => {
     setLoad(true)
+    return ()=>{
+      setLoad(false)
+    }
   }, [])
 
   const startCooking = (e) => {

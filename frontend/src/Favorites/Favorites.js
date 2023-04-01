@@ -9,6 +9,9 @@ const Favorites = () => {
   const delay = 100; //ms
   useEffect(() => {
     setLoad(false)
+    return () => {
+      setLoad(true)
+    }
   }, [])
 
   return (

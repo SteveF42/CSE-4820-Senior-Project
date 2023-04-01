@@ -66,9 +66,15 @@ export const logOut = () => {
                 }
             }
         )
-    }catch(e){
+    } catch (e) {
         console.log(e)
     }
+}
+
+export const logIn = (accessToken, refreshToken) => {
+    window.localStorage.setItem('accessToken',accessToken)
+    window.localStorage.setItem('refreshToken',refreshToken)
+    window.localStorage.setItem('verified',true)
 }
 
 const useAuth = (args) => {

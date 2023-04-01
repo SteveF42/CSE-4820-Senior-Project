@@ -1,10 +1,11 @@
 import { Alert, Button, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
-import './Login.css'
+import './Register.css'
 import lady from './happyLady.png'
 import { Link, useNavigate } from 'react-router-dom'
 import { LoginButton } from '../components/Buttons'
 import axios from 'axios'
+import { logIn } from '../hooks/useAuth'
 
 const Login = () => {
     const [name, setName] = useState('')
@@ -19,6 +20,9 @@ const Login = () => {
 
     useEffect(() => {
         setShowLeft(true);
+        return ()=>{
+            setShowLeft(false)
+        }
     }, [])
 
     const registerUser = async (e) => {
@@ -32,8 +36,7 @@ const Login = () => {
         try {
 
             const res = await axios.post('/api/v1/auth/register', body);
-            window.localStorage.setItem('accessToken', res.data.accessToken)
-            window.localStorage.setItem('refreshToken', res.data.refreshToken)
+            logIn(res.data.accessToken,res.data.refreshToken)
             navigate('/')
         } catch (e) {
             setError(true)
@@ -62,7 +65,7 @@ const Login = () => {
                         <TextField className='form-input' inputProps={styleProps} placeholder='Email' variant='standard' onChange={(e) => {setEmail(e.target.value); setHasSubmitted(false)}}></TextField>
                         <TextField className='form-input' inputProps={styleProps} placeholder='Password' variant='standard' type='password' onChange={(e) => {setPassword(e.target.value); setHasSubmitted(false)}}></TextField>
                         <label>
-                            Already have an account? login <Link> here </Link>
+                            Already have an account? login <Link to='/login'> here </Link>
                         </label>
 
                         <div className='button-group'>
