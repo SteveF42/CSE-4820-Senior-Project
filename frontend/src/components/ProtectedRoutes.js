@@ -8,7 +8,7 @@ const ProtectedRoutes = () => {
     const { auth, pending, error} = useAuth(location.pathname)
 
     if (!pending) {
-        return auth?.status == 200 ? <Outlet /> : <Navigate to='/register' />
+        return auth?.status == 200 ? <Outlet /> : <Navigate to='/register' replace/>
     }
 }
 

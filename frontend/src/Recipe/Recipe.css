@@ -1,0 +1,45 @@
+
+.recipe-container{
+    width: min(120ch,90%);
+    margin-inline: auto;
+}
+
+.recipe-search{
+    padding-top: max(5rem,12vh);
+    width: min(90ch,90%);
+    margin-inline: auto;
+}
+
+.recipe-title{
+    border-bottom: solid 2px white;
+}
+.recipe-grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+    grid-auto-flow: row;
+    gap: 2rem;
+}
+
+.display-recipe-card{
+    display: block;
+    margin-top: 5rem;
+}
+.pagination-stuff{
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+
+
+.recipe-animate-enter{
+    transform: translatex(10%);
+    filter: blur(5px);
+    opacity: 0;
+}
+.recipe-animate-enter-active{
+    transition: 500ms;
+    transform: translatex(0);
+    filter: blur(0);
+    opacity: 1;
+}

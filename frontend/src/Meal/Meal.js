@@ -10,7 +10,7 @@ import axios from 'axios'
 const Meal = () => {
     const { recipeId } = useParams()
     const { data, error, isPending } = useFetch(`/api/v1/recipe/search?recipeID=${recipeId}`)
-    const recipe = !isPending ? data[0] : null
+    const recipe = !isPending ? data.menu[0] : null
 
     const starCount = []
     for (let j = 0; j < recipe?.ratings?.toFixed(0); j++) {

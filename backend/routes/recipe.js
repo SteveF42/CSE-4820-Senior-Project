@@ -53,7 +53,8 @@ router.get('/search', async (req, res) => {
         .skip(skip)
         .limit(count)
         .exec()
-        return res.status(200).json(menu)
+        const querryCount = await Recipes.find(payLoad).count()
+        return res.status(200).json({menu:menu, maxCount: querryCount})
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }

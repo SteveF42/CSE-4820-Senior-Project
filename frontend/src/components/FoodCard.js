@@ -1,9 +1,20 @@
 import React from 'react'
 import './FoodCard.css'
+import { useNavigate } from 'react-router-dom'
 
-const FoodCard = ({title,calCount,img,className,...props}) => {
+const FoodCard = ({title,calCount,img,className,id,...props}) => {
+  const navigate = useNavigate()
+
+  const visitRecipe = (id) => {
+    return (event) => {
+      const recipeID = id
+      console.log(recipeID)
+      navigate(`/recipe/${recipeID}`)
+    }
+  }
+  
   return (
-    <div className={`food-card-container ${className}`} {...props}>
+    <div onClick={visitRecipe(id)} className={`food-card-container expand-card ${className}`} {...props}>
         <div className='food-card-img'>
             <img src={img}></img>
         </div>

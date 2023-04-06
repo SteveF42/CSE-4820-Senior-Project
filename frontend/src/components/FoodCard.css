@@ -33,3 +33,9 @@
 .food-card-details > span{
     -webkit-line-clamp: 1;
 }
+.expand-card:hover{
+    background-color: rgb(203, 203, 203);
+    cursor: pointer;
+    transition: 200ms;
+    transition-delay: 0ms;
+}

@@ -23,26 +23,31 @@ const refreshKey = async (refreshToken) => {
 const checkKey = async () => {
     const refreshToken = window.localStorage.getItem('refreshToken')
     const accessToken = window.localStorage.getItem('accessToken')
-    try {
-        const isValid = await axios.post('/api/v1/auth/valid', {
-            refreshToken: refreshToken,
-        }, {
-            headers: {
-                Authorization: 'Bearer ' + accessToken
+    if (refreshToken && accessToken) {
+
+        try {
+            const isValid = await axios.post('/api/v1/auth/valid', {
+                refreshToken: refreshToken,
+            }, {
+                headers: {
+                    Authorization: 'Bearer ' + accessToken
+                }
+            });
+
+            //if key is valid return it otherwise attempt to refresh the key
+            if (isValid.status === 200) {
+                return isValid
+            } else {
+                return await refreshKey(refreshToken)
             }
-        });
 
-        //if key is valid return it otherwise attempt to refresh the key
-        if (isValid.status === 200) {
-            return isValid
-        } else {
-            return await refreshKey(refreshToken)
+        } catch (e) {
+            const refresh = await refreshKey(refreshToken)
+            return refresh
         }
-
-    } catch (e) {
-        const refresh = await refreshKey(refreshToken)
-        return refresh
     }
+
+    return null
 }
 
 //remoes all items from localstorage and invalidates refresh token, accessToken will expire through time but it also cleared from localstorage
@@ -72,9 +77,9 @@ export const logOut = () => {
 }
 
 export const logIn = (accessToken, refreshToken) => {
-    window.localStorage.setItem('accessToken',accessToken)
-    window.localStorage.setItem('refreshToken',refreshToken)
-    window.localStorage.setItem('verified',true)
+    window.localStorage.setItem('accessToken', accessToken)
+    window.localStorage.setItem('refreshToken', refreshToken)
+    window.localStorage.setItem('verified', true)
 }
 
 const useAuth = (args) => {
@@ -89,7 +94,7 @@ const useAuth = (args) => {
             setPending(false)
             setAuth(res);
 
-            if (res.status === 200) {
+            if (res?.status === 200) {
                 window.localStorage.setItem('verified', true)
             }
         })
