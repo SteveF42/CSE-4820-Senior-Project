@@ -9,12 +9,11 @@ const refreshKey = async (refreshToken) => {
         })
 
         if (res.status === 200) {
-
             window.localStorage.setItem('refreshToken', res.data.refreshToken)
             window.localStorage.setItem('accessToken', res.data.accessToken)
-            return res
+            window.localStorage.setItem('verified', Date.now() + 1000 * 60 * 60 * 1)
         }
-        return null
+        return res
     } catch (e) {
         return e.response
     }
@@ -23,28 +22,38 @@ const refreshKey = async (refreshToken) => {
 const checkKey = async () => {
     const refreshToken = window.localStorage.getItem('refreshToken')
     const accessToken = window.localStorage.getItem('accessToken')
-    if (refreshToken && accessToken) {
+    const verifiedCache = window.localStorage.getItem('verified')
 
-        try {
-            const isValid = await axios.post('/api/v1/auth/valid', {
-                refreshToken: refreshToken,
-            }, {
-                headers: {
-                    Authorization: 'Bearer ' + accessToken
-                }
-            });
 
-            //if key is valid return it otherwise attempt to refresh the key
-            if (isValid.status === 200) {
-                return isValid
-            } else {
-                return await refreshKey(refreshToken)
-            }
-
-        } catch (e) {
-            const refresh = await refreshKey(refreshToken)
-            return refresh
+    //check cache
+    if (parseInt(verifiedCache) >= Date.now()) {
+        return {
+            status: 200,
+            message:'cache read'
         }
+    }
+
+    //if cache is expired
+    try {
+        const isValid = await axios.post('/api/v1/auth/valid', {
+            refreshToken: refreshToken,
+        }, {
+            headers: {
+                Authorization: 'Bearer ' + accessToken
+            }
+        });
+
+        //if key is valid return it otherwise attempt to refresh the key
+        if (isValid.status === 200) {
+            return isValid 
+        } else {
+            const res = await refreshKey(refreshToken)
+            return res
+        }
+
+    } catch (e) {
+        const res = await refreshKey(refreshToken)
+        return res
     }
 
     return null
@@ -79,7 +88,7 @@ export const logOut = () => {
 export const logIn = (accessToken, refreshToken) => {
     window.localStorage.setItem('accessToken', accessToken)
     window.localStorage.setItem('refreshToken', refreshToken)
-    window.localStorage.setItem('verified', true)
+    window.localStorage.setItem('verified', Date.now() + 1000 * 60 * 60 * 1)
 }
 
 const useAuth = (args) => {
@@ -91,12 +100,9 @@ const useAuth = (args) => {
     useEffect(() => {
         checkKey().then(res => {
             console.log(res)
-            setPending(false)
             setAuth(res);
+            setPending(false)
 
-            if (res?.status === 200) {
-                window.localStorage.setItem('verified', true)
-            }
         })
     }, [args])
     return { auth, pending, error }

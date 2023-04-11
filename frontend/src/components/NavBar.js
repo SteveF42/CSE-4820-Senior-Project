@@ -13,7 +13,7 @@ import { Link } from 'react-router-dom'
 
 const NavBar = () => {
   const [open, setOpen] = useState(false);
-  const isVerified = window.localStorage.getItem('verified') === 'true'
+  const isVerified = window.localStorage.getItem('accessToken')
 
 
   const blurBackground = (e) => {
