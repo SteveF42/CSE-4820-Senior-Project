@@ -1,4 +1,4 @@
-import { Alert, Button, TextField } from '@mui/material'
+import { Alert, TextField } from '@mui/material'
 import React, { useEffect, useState } from 'react'
 import './Register.css'
 import lady from './happyLady.png'
@@ -6,6 +6,8 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LoginButton } from '../components/Buttons'
 import axios from 'axios'
 import { logIn } from '../hooks/useAuth'
+import { animate, motion as m } from 'framer-motion'
+
 
 const Login = () => {
     const [name, setName] = useState('')
@@ -20,7 +22,7 @@ const Login = () => {
 
     useEffect(() => {
         setShowLeft(true);
-        return ()=>{
+        return () => {
             setShowLeft(false)
         }
     }, [])
@@ -36,7 +38,7 @@ const Login = () => {
         try {
 
             const res = await axios.post('/api/v1/auth/register', body);
-            logIn(res.data.accessToken,res.data.refreshToken)
+            logIn(res.data.accessToken, res.data.refreshToken)
             navigate('/')
         } catch (e) {
             setError(true)
@@ -44,16 +46,20 @@ const Login = () => {
         }
     }
 
+    const animationStart = (e) => {
+        document.getElementById('animated-left-side').classList.remove('left-side-hide')
+    }
+
     return (
         <div className='register-container'>
-            <div className={showLeft ? 'register-left-side' : 'register-left-side left-side-hide'}>
+            <m.div id='animated-left-side' className='register-left-side left-side-hide' animate={{className:'left-side-hidae'}} onAnimationEnd={animationStart}>
                 <div className='dysh-logo'>
                     <Link className='item-link' to='/'>D Y S H</Link>
                 </div>
 
                 <div className='left-form-information'>
-                    <div style={{display: error ? 'block' : 'none',width:'100%'}}>
-                        <Alert severity='error' onClose={()=>{setError(false)}}>{errorText}</Alert>
+                    <div style={{ display: error ? 'block' : 'none', width: '100%' }}>
+                        <Alert severity='error' onClose={() => { setError(false) }}>{errorText}</Alert>
                     </div>
                     <div className='register-title'>
                         <h1>Create an Account</h1>
@@ -61,9 +67,9 @@ const Login = () => {
                     </div>
 
                     <form className='register-form'>
-                        <TextField className='form-input' inputProps={styleProps} placeholder='Name' variant='standard' onChange={(e) => {setName(e.target.value); setHasSubmitted(false)}}></TextField>
-                        <TextField className='form-input' inputProps={styleProps} placeholder='Email' variant='standard' onChange={(e) => {setEmail(e.target.value); setHasSubmitted(false)}}></TextField>
-                        <TextField className='form-input' inputProps={styleProps} placeholder='Password' variant='standard' type='password' onChange={(e) => {setPassword(e.target.value); setHasSubmitted(false)}}></TextField>
+                        <TextField className='form-input' inputProps={styleProps} placeholder='Name' variant='standard' onChange={(e) => { setName(e.target.value); setHasSubmitted(false) }}></TextField>
+                        <TextField className='form-input' inputProps={styleProps} placeholder='Email' variant='standard' onChange={(e) => { setEmail(e.target.value); setHasSubmitted(false) }}></TextField>
+                        <TextField className='form-input' inputProps={styleProps} placeholder='Password' variant='standard' type='password' onChange={(e) => { setPassword(e.target.value); setHasSubmitted(false) }}></TextField>
                         <label>
                             Already have an account? login <Link to='/login'> here </Link>
                         </label>
@@ -75,7 +81,7 @@ const Login = () => {
                     </form>
                 </div>
 
-            </div>
+            </m.div>
 
             <div className='register-right-side'>
                 <div className='register-img'>

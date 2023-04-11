@@ -5,7 +5,7 @@ import './Recipe.css'
 import FoodCard from '../components/FoodCard'
 import { Pagination } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
-import { AnimatePresence, LayoutGroup, motion as m } from 'framer-motion'
+import { motion as m } from 'framer-motion'
 import axios from 'axios'
 
 const Recipe = () => {

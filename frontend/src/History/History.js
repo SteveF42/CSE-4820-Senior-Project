@@ -6,7 +6,7 @@ import { CardRows } from '../components/CardRows'
 
 const History = () => {
   const [load, setLoad] = useState(true)
-  const delay = 100; //ms
+  const delay = 0.15; //ms
   useEffect(() => {
     setLoad(false)
     return () => {
@@ -25,7 +25,7 @@ const History = () => {
         <h1>Your History</h1>
         <div className={`history-information`}>
           <CardRows date={'February 2023'} totalDelay={0} />
-          <CardRows date={'February 2023'} totalDelay={200} />
+          <CardRows date={'February 2023'} totalDelay={delay * 1} />
         </div>
       </div>
     </div>

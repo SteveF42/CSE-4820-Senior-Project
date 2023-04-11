@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import FoodCard from './FoodCard';
 import chicken from './plate.png';
+import { motion as m } from 'framer-motion'
 
 export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
-  let delay = 100; //ms
+  let delay = 0.095; //ms
   const cards = [];
   const [load, setLoad] = useState(true);
 
@@ -13,20 +14,50 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
 
   for (let i = 0; i < 6; i++) {
     cards.push(
-      <div key={i} style={{ transitionDelay: ((delay * i) + totalDelay) + 'ms' }} className={`history-row-item ${load ? 'history-hidden' : 'history-show'}`} >
+      <m.div
+        key={i}
+        initial={{
+          x: '100%',
+          filter: 'blur(5px)',
+          opacity: 0,
+        }}
+        animate={{
+          x: '0%',
+          filter: 'blur(0)',
+          opacity: 1,
+          transition: {
+            duration: 0.5,
+            delay: (delay * i) + totalDelay,
+          },
+        }}
+      >
         <FoodCard className={`history-row-item`} img={chicken} calCount='232' title="Chicken Risotto" />
-      </div>
+      </m.div>
     );
   }
 
   return (
-    <div className={`history-date ${load ? 'hidden' : 'show'}`} style={{ transitionDelay: `${totalDelay}ms` }}>
-      <h3 style={{ textAlign: 'center' }}>
-        {date}
-      </h3>
-      <div className='history-row'>
-        {cards}
-      </div>
-    </div>
+    <m.div className='history-date'
+      initial={{
+        y: -10,
+        filter: 'blur(5px)',
+        opacity: 0,
+      }}
+      animate={{
+        y: 0,
+        filter: 'blur(0)',
+        opacity: 1,
+        transition:{
+          duration:0.4,
+          delay:totalDelay
+        }
+      }}>
+        <h3 style={{ textAlign: 'center' }}>
+          {date}
+        </h3>
+        <div className='history-row'>
+          {cards}
+        </div>
+    </m.div>
   );
 };
