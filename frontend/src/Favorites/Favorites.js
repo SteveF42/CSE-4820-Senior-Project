@@ -5,15 +5,6 @@ import NavBar from '../components/NavBar';
 
 
 const Favorites = () => {
-  const [load, setLoad] = useState(true)
-  const delay = 100; //ms
-  useEffect(() => {
-    setLoad(false)
-    return () => {
-      setLoad(true)
-    }
-  }, [])
-
   return (
     <div>
       <NavBar />
@@ -24,7 +15,6 @@ const Favorites = () => {
       <div className='history-container'>
         <h1>Your Favorites</h1>
         <div className={`history-information`}>
-          <CardRows date={'February 2023'} totalDelay={0} />
         </div>
       </div>
     </div>

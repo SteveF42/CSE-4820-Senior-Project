@@ -5,16 +5,15 @@ import { motion as m } from 'framer-motion'
 
 export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
   let delay = 0.095; //ms
-  const cards = [];
+  const [cards, setCards] = useState([])
   const [load, setLoad] = useState(true);
 
-  useEffect(() => {
-    setLoad(false);
-  }, []);
+  const months = ["January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"];
 
-  for (let i = 0; i < 6; i++) {
-    cards.push(
-      <m.div
+  useEffect(() => {
+    const foodCards = recipes.map((x, i) => {
+      return (<m.div
         key={i}
         initial={{
           x: '100%',
@@ -31,10 +30,13 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
           },
         }}
       >
-        <FoodCard className={`history-row-item`} img={chicken} calCount='232' title="Chicken Risotto" />
+        <FoodCard key={x?._id} className={`history-row-item`} img={x?.image} calCount={x?.nutrients?.calories} title={x?.title} id={x?._id} />
       </m.div>
-    );
-  }
+      )
+    });
+    setCards([...foodCards])
+  }, []);
+
 
   return (
     <m.div className='history-date'
@@ -47,17 +49,17 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
         y: 0,
         filter: 'blur(0)',
         opacity: 1,
-        transition:{
-          duration:0.4,
-          delay:totalDelay
+        transition: {
+          duration: 0.4,
+          delay: totalDelay
         }
       }}>
-        <h3 style={{ textAlign: 'center' }}>
-          {date}
-        </h3>
-        <div className='history-row'>
-          {cards}
-        </div>
+      <h3 style={{ textAlign: 'center' }}>
+        {`${months[date.getMonth()]} ${date.getFullYear()}`}
+      </h3>
+      <div className='history-row'>
+        {cards}
+      </div>
     </m.div>
   );
 };

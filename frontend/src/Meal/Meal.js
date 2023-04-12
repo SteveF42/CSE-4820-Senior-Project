@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import MainSearch from '../components/MainSearch'
 import NavBar from '../components/NavBar'
 import useFetch from '../hooks/useFetch'
@@ -6,9 +6,31 @@ import './Meal.css'
 import star from './reviewStar.png'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import useAuth from '../hooks/useAuth'
 
 const Meal = () => {
     const { recipeId } = useParams()
+    const { auth, error: authError, pending } = useAuth()
+
+    //adds item to user history if they are logged in
+    useEffect(() => {
+        if (auth?.status === 200) {
+            const accessToken = window.localStorage.getItem('accessToken')
+            try {
+
+                axios.post('/api/v1/history', { recipeID: recipeId }, {
+                    headers: {
+                        Authorization: 'bearer ' + accessToken
+                    }
+                })
+            }catch(e){
+                console.log(e)
+            }
+        }
+    }, [auth])
+
+
+
     const { data, error, isPending } = useFetch(`/api/v1/recipe/search?recipeID=${recipeId}`)
     const recipe = !isPending ? data.menu[0] : null
 

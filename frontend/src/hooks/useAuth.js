@@ -23,13 +23,15 @@ const checkKey = async () => {
     const refreshToken = window.localStorage.getItem('refreshToken')
     const accessToken = window.localStorage.getItem('accessToken')
     const verifiedCache = window.localStorage.getItem('verified')
-
+    if (!refreshToken || !accessToken) {
+        return null
+    }
 
     //check cache
     if (parseInt(verifiedCache) >= Date.now()) {
         return {
             status: 200,
-            message:'cache read'
+            message: 'cache read'
         }
     }
 
@@ -45,7 +47,7 @@ const checkKey = async () => {
 
         //if key is valid return it otherwise attempt to refresh the key
         if (isValid.status === 200) {
-            return isValid 
+            return isValid
         } else {
             const res = await refreshKey(refreshToken)
             return res
