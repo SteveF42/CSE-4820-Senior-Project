@@ -13,7 +13,7 @@ const MainSearch = (props) => {
 
   const submit = async(e) => {
     if (e.code === 'Enter') {
-      const ingredientList = searchInput.split(' ').map(x=> x.replace(',','')).join(',')
+      const ingredientList = searchInput.split(',')
       console.log('first')
       navigate('/recipe?ingredients='+ingredientList)
     }

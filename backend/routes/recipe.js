@@ -15,19 +15,23 @@ router.get('/search', async (req, res) => {
     count = parseInt(count)
 
     ingredients = ingredients.split(',')
-        .map(x => x.trim())
-        .join('|')
+        .map(x => {
+            x = x.trim()
+            return {
+                ingredients: {
+                    $regex: `\\b${x}\\b`,
+                    $options: 'i'
+                }
+            }
+        })
 
     categories = categories.split(',')
         .map(x => x.trim())
-        .join('|')
+        .join('')
 
     const payLoad = {
         ...req.query.ingredients ? {
-            ingredients: {
-                $regex: ingredients,
-                $options: 'i'
-            }
+            $and:ingredients
         } : {},
         ...req.query.categories ? {
             categories: {
@@ -36,25 +40,25 @@ router.get('/search', async (req, res) => {
             }
         } : {},
         ...recipeID ? {
-            _id : recipeID
-        }: {},
+            _id: recipeID
+        } : {},
         ...cookingTime ? {
-            total_time : cookingTime
-        } : {}        
+            total_time: cookingTime
+        } : {}
     }
 
-    console.log(payLoad)
+    console.log(ingredients)
 
     try {
         // if (!categories && !ingredients)
         //     return res.status(200).json([])
 
         const menu = await Recipes.find(payLoad)
-        .skip(skip)
-        .limit(count)
-        .exec()
+            .skip(skip)
+            .limit(count)
+            .exec()
         const querryCount = await Recipes.find(payLoad).count()
-        return res.status(200).json({menu:menu, maxCount: querryCount})
+        return res.status(200).json({ menu: menu, maxCount: querryCount })
     } catch (error) {
         return res.status(500).json({ message: error.message })
     }
