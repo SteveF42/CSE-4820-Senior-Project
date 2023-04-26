@@ -16,7 +16,7 @@ const History = () => {
     axios.get('/api/v1/history', { headers: { Authorization: 'bearer ' + accessToken } }).then(res => {
       console.log(res.data)
 
-      const recipeDates = [{}]
+      const recipeDates = []
       let currentMonthYear = [null, null];
       let index = -1;
       for (let i of res.data.history) {

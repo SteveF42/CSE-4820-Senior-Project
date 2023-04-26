@@ -7,6 +7,7 @@ import { Pagination } from '@mui/material'
 import { useSearchParams } from 'react-router-dom'
 import { motion as m } from 'framer-motion'
 import axios from 'axios'
+import useAuth from '../hooks/useAuth'
 
 const Recipe = () => {
   const [searchParams, setSearchParams] = useSearchParams()
@@ -16,7 +17,6 @@ const Recipe = () => {
   const [pageCount, setPageCount] = useState(1)
 
   const [recipeCards, setRecipeCards] = useState([])
-  const [data, setData] = useState([])
 
   useEffect(() => {
     setPageNum(1)

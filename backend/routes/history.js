@@ -19,7 +19,8 @@ router.get('/', authenticateToken, fetchUser, async (req, res) => {
     try {
         req.userModel.history = req.userModel.history.slice(start,end)
         const userModel = await req.userModel.populate('history.recipe')
-        const history = userModel.history
+        let history = userModel.history
+        
         return res.status(200).json({
             history
         })

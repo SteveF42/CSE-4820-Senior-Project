@@ -55,7 +55,7 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
         }
       }}>
       <h3 style={{ textAlign: 'center' }}>
-        {`${months[date.getMonth()]} ${date.getFullYear()}`}
+        {`${months[date?.getMonth()]} ${date?.getFullYear()}`}
       </h3>
       <div className='history-row'>
         {cards}
