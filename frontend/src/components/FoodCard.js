@@ -67,8 +67,8 @@ const FoodCard = ({ title, calCount, img, className, id,clicked=false, ...props 
     <div className={`food-card-container expand-card ${className}`} {...props}>
       <StarButton starred={isClicked} onClick={addToFav} style={{ marginRight: '0.3rem' }} />
 
-      <div style={{ display: 'flex', alignItems: 'center' }}>
-        <div className='food-card-img' onClick={visitRecipe(id)}>
+      <div style={{ display: 'flex', alignItems: 'center' }} onClick={visitRecipe(id)}>
+        <div className='food-card-img' >
           <img src={img}></img>
         </div>
         <div className='food-card-details'>
