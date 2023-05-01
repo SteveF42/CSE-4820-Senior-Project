@@ -6,6 +6,7 @@ import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import AssignmentOutlinedIcon from '@mui/icons-material/AssignmentOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import SearchIcon from '@mui/icons-material/Search';
+import InfoOutlinedIcon from '@mui/icons-material/InfoOutlined';
 import './NavBar.css'
 import { Icon } from '@mui/material';
 import { Link } from 'react-router-dom'
@@ -47,6 +48,10 @@ const NavBar = () => {
             <FavoriteBorderIcon />
             <label>Favorites</label>
           </Link>
+          <Link className='item-link navBar-item' to='/about'>
+            <InfoOutlinedIcon />
+            <label>About</label>
+          </Link>
           {isVerified ?
             <Link className='item-link navBar-item' to='/logout'>
               <AccountCircleOutlinedIcon />
@@ -58,7 +63,7 @@ const NavBar = () => {
               <label>Register/login</label>
             </Link>
           }
-          <Link className='item-link navBar-item' style={{backgroundColor:'grey'}}>
+          <Link className='item-link navBar-item' style={{ backgroundColor: 'grey' }}>
             <AssignmentOutlinedIcon />
             <label>Orders</label>
           </Link>

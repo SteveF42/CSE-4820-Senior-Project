@@ -12,7 +12,7 @@ import CloseIcon from '@mui/icons-material/Close';
 
 const Meal = () => {
     const { recipeId } = useParams()
-    const { auth, error: authError, pending } = useAuth
+    const { auth, error: authError, pending } = useAuth()
     const [show, setShow] = useState(false)
     const right = useRef(null)
 

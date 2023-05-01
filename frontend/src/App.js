@@ -8,6 +8,7 @@ import ProtectedRoutes from './components/ProtectedRoutes';
 import Register from './Register';
 import Logout from './Logout';
 import Login from './Login';
+import About from './About';
 
 function App() {
 
@@ -19,6 +20,7 @@ function App() {
         <Route path='/logout' element={<Logout />} />
         <Route path='/login' element={<Login />} />
         <Route path='/recipe' element={<Recipe />} />
+        <Route path='/about' element={<About />} />
         <Route path='/recipe/:recipeId' element={<Meal />} />
 
         <Route element={<ProtectedRoutes />}>

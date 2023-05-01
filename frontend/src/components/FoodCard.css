@@ -16,7 +16,8 @@
 .food-card-img img{
     height: 100%;
     display: block;
-    object-fit: cover;
+    object-fit: contain;
+    max-width: 8rem;
 }
 .food-card-details{
     flex-grow: 1;

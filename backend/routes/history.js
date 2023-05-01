@@ -14,13 +14,12 @@ router.get('/', authenticateToken, fetchUser, async (req, res) => {
     const count = req.query.count || 10
     const start = req.query.skip || 0
     const end = start + count
-    console.log(count)
 
     try {
         req.userModel.history = req.userModel.history.slice(start,end)
         const userModel = await req.userModel.populate('history.recipe')
         let history = userModel.history
-        
+        console.log('history length: ',history.length)
         return res.status(200).json({
             history
         })
@@ -39,10 +38,10 @@ router.post('/', authenticateToken, fetchUser, async (req, res) => {
         const recipeID = req.body.recipeID;
         if (userModel.history.some(x => x.recipe.toString() === recipeID)) {
             const arr = history.filter(x => x.recipe.toString() !== recipeID);
-            arr.push({ recipe: recipeID })
+            arr.unshift({ recipe: recipeID })
             userModel.history = arr
         } else {
-            userModel.history.push({ recipe: recipeID })
+            userModel.history.unshift({ recipe: recipeID })
         }
 
         await userModel.save()

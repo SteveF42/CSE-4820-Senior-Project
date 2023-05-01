@@ -31,7 +31,7 @@ const History = () => {
           }
         }
         
-        recipeDates[index].recipes.unshift(i.recipe)
+        recipeDates[index].recipes.push(i.recipe)
       }
       console.log(recipeDates)
       setHistory(recipeDates)
