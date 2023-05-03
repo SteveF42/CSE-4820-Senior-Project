@@ -1,0 +1,25 @@
+
+.meal-pill{
+    background: #363636;
+    width: fit-content;
+    border-radius: 60px;
+    padding: 1rem;
+}
+
+.top-pill{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: 90px;
+    width: 90px;
+    border-radius: 50px;
+}
+.bottom-pill{
+    display: flex;
+    justify-content: center;
+    color: white;
+}
+.bottom-pill > h4 {
+    margin-block: 1rem;
+}

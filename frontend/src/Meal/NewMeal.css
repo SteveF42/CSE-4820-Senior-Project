@@ -1,0 +1,131 @@
+.meal-top {
+    background-image: url('./topBackground.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    padding-inline: 2rem;
+    padding-block: 12rem;
+    display: flex;
+    flex-wrap: wrap-reverse;
+    justify-content: center;
+}
+
+.meal-rating{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+    flex-wrap: wrap;
+}
+
+.meal-image {
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    flex-basis: 40%;
+}
+
+.meal-image>img {
+    height: max(22vw, 300px);
+    max-height: 500px;
+    object-fit: fill;
+    border-radius: 15px;
+    display: block;
+}
+
+.meal-title {
+    flex-basis: 58%;
+    font-size: clamp(1em,1.5vw,1.5em);
+}
+
+.meal-title>div {
+    width: 35ch;
+    text-align: center;
+}
+
+.meal-phone {
+    position: sticky;
+    top: 24rem;
+    float: right;
+    margin-right: 2rem;
+    transform: translateY(-50%);
+    max-width: 21rem;
+    border-radius: 30px;
+    padding: 2rem;
+    background-color: #54586A;
+}
+
+.meal-phone div {
+    background-color: white;
+    color: black;
+    padding: 2rem;
+}
+
+.meal-phone h1 {
+    border-bottom: solid black;
+}
+
+.dot {
+    height: 16px;
+    width: 15px;
+    background-color: #54586A;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot1 {
+    position: absolute;
+    left: 15%;
+}
+
+.dot2 {
+    position: absolute;
+    right: 15%;
+}
+
+.meal-bottom {
+    height: 100%;
+    background: linear-gradient(180deg, #D8D8D8 74%, #000000 137.99%);
+    color: black;
+    padding: 5rem;
+}
+
+.meal-bottom-inner {
+    width: 70%;
+}
+
+.nutritional-info {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 1rem 5rem;
+    flex-wrap: wrap;
+}
+
+@media (max-width:1600px) {
+    .meal-phone {
+        position: static;
+        float: none;
+        margin-inline: auto;
+        transform: translateY(0);
+        max-width: 21rem;
+        border-radius: 30px;
+        padding: 2rem;
+        background-color: #54586A;
+    }
+    .meal-bottom-inner{
+        width: 100%;
+    }
+    .meal-bottom{
+        padding: 1.5rem;
+    }
+    .meal-title > div{
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+    .meal-top{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        align-content: center;
+    }
+}

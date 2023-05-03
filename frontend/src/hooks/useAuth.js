@@ -66,7 +66,7 @@ export const logOut = () => {
 
     const refreshToken = window.localStorage.getItem('refreshToken')
     const accessToken = window.localStorage.getItem('accessToken')
-    window.localStorage.clear()
+
 
     try {
         axios.post('api/v1/auth/logout',
@@ -79,6 +79,7 @@ export const logOut = () => {
                 }
             }
         )
+        window.localStorage.clear()
     } catch (e) {
         console.log(e)
     }
