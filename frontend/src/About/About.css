@@ -1,6 +1,8 @@
 
 .about-us{
-    padding: 8px;
+    margin-top: 10rem;
+    display: inline-block;
+    width: 100%;
 }
 
 .column {

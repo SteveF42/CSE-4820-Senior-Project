@@ -13,25 +13,27 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
 
   useEffect(() => {
     const foodCards = recipes.map((x, i) => {
-      return (<m.div
-        key={i}
-        initial={{
-          x: '100%',
-          filter: 'blur(5px)',
-          opacity: 0,
-        }}
-        animate={{
-          x: '0%',
-          filter: 'blur(0)',
-          opacity: 1,
-          transition: {
-            duration: 0.5,
-            delay: (delay * i) + totalDelay,
-          },
-        }}
-      >
-        <FoodCard key={x?._id} className={`history-row-item`} img={x?.image} calCount={x?.nutrients?.calories} title={x?.title} id={x?._id} />
-      </m.div>
+      
+      return (
+        <m.div
+          key={i}
+          initial={{
+            x: '100%',
+            filter: 'blur(5px)',
+            opacity: 0,
+          }}
+          animate={{
+            x: '0%',
+            filter: 'blur(0)',
+            opacity: 1,
+            transition: {
+              duration: 0.5,
+              delay: (delay * i) + totalDelay,
+            },
+          }}
+        >
+          <FoodCard key={x?._id} className={`history-row-item`} img={x?.image} calCount={x?.nutrients?.calories} title={x?.title} id={x?._id} />
+        </m.div>
       )
     });
     setCards([...foodCards])

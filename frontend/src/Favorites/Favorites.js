@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react'
-import { CardRows } from '../components/CardRows'
 import MainSearch from '../components/MainSearch';
 import NavBar from '../components/NavBar';
 import { motion as m } from 'framer-motion'
@@ -16,6 +15,10 @@ const Favorites = () => {
   useEffect(() => {
     axios.get('/api/v1/favorite', { headers: { Authorization: 'bearer ' + accessToken } }).then(res => {
       console.log(res)
+
+      //store the id of the users favorites
+      const idArr = res.data.favorite.map(x=>x.recipe._id);
+      window.localStorage.setItem('favorites',idArr);
       initializeCards(res.data)
     })
   }, [])

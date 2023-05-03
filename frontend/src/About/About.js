@@ -38,9 +38,19 @@ const About = () => {
                         jobTitle={'Full Stack Developer'}
                         memberName={'Steve Flores'}
                     />
-
+                    <MemberCard
+                        description={descriptions.steve}
+                        email={'stevewflores43@gmail.com'}
+                        github={'https://github.com/SteveF42'}
+                        imgSrc={STEVE}
+                        jobTitle={'Full Stack Developer'}
+                        memberName={'Steve Flores'}
+                    />
                 </div>
             </div>
+            <footer style={{textAlign:'center'}}>
+                DISCLAIMER: all ingredients displayed on DYSH are property of <a href='http://www.skinnytaste.com'>skinnytaste.com</a> and is in no way associated with DYSH
+            </footer>
         </>
     )
 }

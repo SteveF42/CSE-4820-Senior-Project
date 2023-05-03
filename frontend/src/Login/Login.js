@@ -24,6 +24,11 @@ const Login = () => {
     }
     try {
       const req = await axios.post('/api/v1/auth/login', body)
+      axios.get('/api/v1/favorite', { headers: { Authorization: 'bearer ' + req.data.accessToken } }).then(res => {
+        //store the id of the users favorites
+        const idArr = res.data.favorite.map(x => x.recipe._id);
+        window.localStorage.setItem('favorites', idArr);
+      })
       if (req.status === 200) {
         logIn(req.data.accessToken, req.data.refreshToken)
         navigate('/')
