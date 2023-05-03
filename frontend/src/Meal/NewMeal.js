@@ -6,6 +6,7 @@ import useAuth from '../hooks/useAuth'
 import useFetch from '../hooks/useFetch'
 import star from './reviewStar.png'
 import { Pill } from './Pill'
+import axios from 'axios'
 
 
 const NewMeal = () => {
