@@ -4,10 +4,11 @@ import MemberCard from './MemberCard'
 import NavBar from '../components/NavBar'
 
 import STEVE from './steve.jpg'
+import DANIEL from './daniel.jpg'
 
 const descriptions = {
-    steve: 'Computer science major attending CSUSB',
-    Daniel: 'Something about design'
+    steve: "I'm a computer science major currently attending CSUSB with a graduation date of Spring 2023",
+    Daniel: "​I'm a UX Designer by day and a Content Creator by night. I focus on creating experiences that are functional and visually compelling"
 }
 
 const txt = `
@@ -39,12 +40,12 @@ const About = () => {
                         memberName={'Steve Flores'}
                     />
                     <MemberCard
-                        description={descriptions.steve}
-                        email={'stevewflores43@gmail.com'}
-                        github={'https://github.com/SteveF42'}
-                        imgSrc={STEVE}
-                        jobTitle={'Full Stack Developer'}
-                        memberName={'Steve Flores'}
+                        description={descriptions.Daniel}
+                        email={'ohdaniel27602@gmail.com'}
+                        github={'https://www.itsoh.design/'}
+                        imgSrc={DANIEL}
+                        jobTitle={'UI/UX designer'}
+                        memberName={'Daniel Oh'}
                     />
                 </div>
             </div>

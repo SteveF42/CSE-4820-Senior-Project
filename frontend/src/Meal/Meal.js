@@ -7,7 +7,6 @@ import star from './reviewStar.png'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
 import useAuth from '../hooks/useAuth'
-import CloseIcon from '@mui/icons-material/Close';
 
 
 const Meal = () => {

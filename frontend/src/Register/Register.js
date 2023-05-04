@@ -6,7 +6,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { LoginButton } from '../components/Buttons'
 import axios from 'axios'
 import { logIn } from '../hooks/useAuth'
-import { animate, motion as m } from 'framer-motion'
+import {motion as m } from 'framer-motion'
 
 
 const Login = () => {
@@ -52,7 +52,7 @@ const Login = () => {
 
     return (
         <div className='register-container'>
-            <m.div id='animated-left-side' className='register-left-side left-side-hide' animate={{className:'left-side-hidae'}} onAnimationEnd={animationStart}>
+            <m.div id='animated-left-side' className='register-left-side left-side-hide' animate={{className:'left-side-hide'}} onAnimationEnd={animationStart}>
                 <div className='dysh-logo'>
                     <Link className='item-link' to='/'>D Y S H</Link>
                 </div>

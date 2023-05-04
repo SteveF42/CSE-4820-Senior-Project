@@ -79,12 +79,12 @@ const NewMeal = () => {
           <div className='meal-bottom-inner'>
             <h1>Meal Description: </h1>
             <div className='nutritional-info'>
-              <Pill calories={recipe?.nutrients.calories.split(' ')[0]} label={'Calories'} />
-              <Pill calories={recipe?.nutrients.fatContent.split(' ')[0]} label={'Fat'} />
-              <Pill calories={recipe?.nutrients.proteinContent.split(' ')[0]} label={'Protein'} />
-              <Pill calories={recipe?.nutrients.carbohydrateContent.split(' ')[0]} label={'Carbs'} />
-              <Pill calories={recipe?.nutrients.sugarContent.split(' ')[0]} label={'Sugar'} />
-              <Pill calories={recipe?.nutrients.sodiumContent.split(' ')[0]} label={'Sodium'} />
+              <Pill calories={recipe?.nutrients?.calories?.replace(' ','')} label={'Calories'} />
+              <Pill calories={recipe?.nutrients?.fatContent?.replace(' ','')} label={'Fat'} />
+              <Pill calories={recipe?.nutrients?.proteinContent?.replace(' ','')} label={'Protein'} />
+              <Pill calories={recipe?.nutrients?.carbohydrateContent?.replace(' ','')} label={'Carbs'} />
+              <Pill calories={recipe?.nutrients?.sugarContent?.replace(' ','')} label={'Sugar'} />
+              <Pill calories={recipe?.nutrients?.sodiumContent?.replace(' ','')} label={'Sodium'} />
             </div>
 
             <h1>Method: </h1>

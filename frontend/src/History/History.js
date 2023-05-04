@@ -3,7 +3,6 @@ import MainSearch from '../components/MainSearch'
 import NavBar from '../components/NavBar'
 import './History.css'
 import { CardRows } from '../components/CardRows'
-import useFetch from '../hooks/useFetch'
 import axios from 'axios'
 
 const History = () => {
