@@ -47,11 +47,10 @@
 }
 
 .meal-phone {
-    font-size: clamp(1rem,1vw,1.4rem);
-    position: sticky;
-    top: 24rem;
+    font-size: clamp(1rem,1vw,1.2rem);
+    position: relative;
+    transform: translateY(-35%);
     float: right;
-    transform: translateY(-50%);
     max-width: 480px;
     border-radius: 30px;
     padding: 2rem;
@@ -105,7 +104,7 @@
     flex-wrap: wrap;
 }
 
-@media (max-width:1600px) {
+@media (max-width:1576px) {
     .meal-phone {
         position: static;
         float: none;
