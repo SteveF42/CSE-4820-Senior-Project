@@ -47,12 +47,12 @@
 }
 
 .meal-phone {
+    font-size: clamp(1rem,1vw,1.4rem);
     position: sticky;
     top: 24rem;
     float: right;
-    margin-right: 2rem;
     transform: translateY(-50%);
-    max-width: 21rem;
+    max-width: 480px;
     border-radius: 30px;
     padding: 2rem;
     background-color: #54586A;
@@ -111,7 +111,7 @@
         float: none;
         margin-inline: auto;
         transform: translateY(0);
-        max-width: 21rem;
+        max-width: 24rem;
         border-radius: 30px;
         padding: 2rem;
         background-color: #54586A;
