@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import SearchIcon from '@mui/icons-material/Search';
 import { TextFieldMain } from '../components/dyshText'
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 const MainSearch = (props) => {
   const [searchInput, setSearchInput] = useState('')

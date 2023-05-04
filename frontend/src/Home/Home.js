@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from 'react'
 import NavBar from '../components/NavBar'
 import './Home.css'
 import chicken from './chicken.png'

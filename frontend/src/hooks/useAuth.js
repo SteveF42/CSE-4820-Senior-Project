@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import axios from 'axios'
 
 // if the current key is invalid it refreshes the token

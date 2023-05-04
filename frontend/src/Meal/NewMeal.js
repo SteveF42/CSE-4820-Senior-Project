@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import NavBar from '../components/NavBar'
 import './NewMeal.css'
 import { useParams } from 'react-router-dom'

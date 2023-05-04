@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import FoodCard from './FoodCard';
-import chicken from './plate.png';
 import { motion as m } from 'framer-motion'
 
 export const CardRows = ({ date, recipes, totalDelay, ...props }) => {

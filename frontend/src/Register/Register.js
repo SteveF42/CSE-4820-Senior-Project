@@ -1,5 +1,5 @@
 import { Alert, TextField } from '@mui/material'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './Register.css'
 import lady from './happyLady.png'
 import { Link, useNavigate } from 'react-router-dom'
@@ -13,19 +13,11 @@ const Login = () => {
     const [name, setName] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
-    const [showLeft, setShowLeft] = useState(false)
     const [hasSubmitted, setHasSubmitted] = useState(false)
     const [error, setError] = useState(false)
     const [errorText, setErrorText] = useState('')
     const navigate = useNavigate();
     const styleProps = { style: { height: '2.3rem', fontSize: '1.7rem', marginTop: '1rem' } }
-
-    useEffect(() => {
-        setShowLeft(true);
-        return () => {
-            setShowLeft(false)
-        }
-    }, [])
 
     const registerUser = async (e) => {
         setHasSubmitted(true);

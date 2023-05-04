@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react'
 import './FoodCard.css'
 import { useNavigate } from 'react-router-dom'
 import StarButton from './StarButton/StarButton'
-import useAuth from '../hooks/useAuth'
 import axios from 'axios'
 
 const FoodCard = ({ title, calCount, img, className, id, clicked = false, ...props }) => {
