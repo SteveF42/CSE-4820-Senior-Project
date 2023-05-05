@@ -25,8 +25,8 @@
 }
 
 .meal-image>img {
-    height: max(22vw, 300px);
-    max-height: 500px;
+    height: max(22vw, 200px);
+    max-height: 330px;
     object-fit: fill;
     border-radius: 15px;
     display: block;
