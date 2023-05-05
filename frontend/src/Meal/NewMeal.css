@@ -25,7 +25,7 @@
 }
 
 .meal-image>img {
-    height: max(22vw, 200px);
+    height: max(22vw, 220px);
     max-height: 330px;
     object-fit: fill;
     border-radius: 15px;
@@ -51,7 +51,7 @@
     position: relative;
     transform: translateY(-35%);
     float: right;
-    max-width: 480px;
+    max-width: 430px;
     border-radius: 30px;
     padding: 2rem;
     background-color: #54586A;
