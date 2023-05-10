@@ -2,7 +2,7 @@
 CSE 4820 Senior Project, Spring 2023
 
 # Setup
-make sure to have Node 18.12.1+ installed alongside npm
+make sure to have Node 18.12.1+ installed alongside npm and docker
 
 to run a development environment go into each respective frontend and backend folder and run
 <li>npm install</li>
