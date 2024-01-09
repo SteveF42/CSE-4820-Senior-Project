@@ -4,11 +4,9 @@
 
 body{
     /* background: #DADFE5; */
-    background: var(--main-background);
     /* background: radial-gradient(circle, rgba(165,165,165,1) 0%, rgba(51,58,72,1) 100%); */
-    background-repeat: no-repeat;
+    background: var(--main-background);
     margin: 0;
     background-attachment: fixed;
-    color: white;
     font-family: 'Poppins' !important;
 }
