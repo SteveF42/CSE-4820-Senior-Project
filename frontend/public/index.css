@@ -1,6 +1,11 @@
+:root{
+    --main-background: #DADFE5;
+}
+
 body{
-    background: rgb(165,165,165);
-    background: radial-gradient(circle, rgba(165,165,165,1) 0%, rgba(51,58,72,1) 100%);
+    /* background: #DADFE5; */
+    background: var(--main-background);
+    /* background: radial-gradient(circle, rgba(165,165,165,1) 0%, rgba(51,58,72,1) 100%); */
     background-repeat: no-repeat;
     margin: 0;
     background-attachment: fixed;
