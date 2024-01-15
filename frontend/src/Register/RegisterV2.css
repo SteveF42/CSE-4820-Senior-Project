@@ -1,0 +1,62 @@
+.register-page {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    color: black;
+    padding-top: max(4rem, 30vh);
+    font-size: clamp(1rem, 2vw, 1.5rem);
+}
+
+.register-left {
+    /* font-size: 1.5rem; */
+    position: relative;
+    text-align: center;
+}
+
+.register-right {
+    align-self: center;
+    justify-self: center;
+
+    width: 75%;
+}
+
+.register-left img {
+    height: max(130px, 12vw);
+    max-height: 250px;
+}
+
+
+.bg-shape {
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    border-radius: 50%;
+    z-index: -1;
+    opacity: 80%;
+    filter: blur(40px);
+}
+
+.bg-blue {
+    background-color: #b6dcf1;
+}
+
+.bg-other-blue {
+    background-color: #C1FFEF;
+}
+
+@media (max-width: 768px) {
+    .register-page {
+        padding-top: 3rem;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .register-left {
+        margin-bottom: 2rem;
+    }
+    .register-left img{
+        width: 100%;
+        object-fit: scale-down;
+    }
+}

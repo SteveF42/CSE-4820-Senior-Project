@@ -1,42 +1,37 @@
 .home-container{
     margin-inline: auto;
-    width: min(120ch,90%);
+    width: min(140ch,90%);
 }
-.page-content-home{
+
+.home-content {
     display: flex;
     flex-direction: column;
     align-items: center;
-    font-size: clamp(1rem,2vw,2rem);
-    height: 100vh;
+    padding-top: max(5rem, 25vh);
+    color: black;
+    font-size: clamp(0.7rem, 2vw, 1.7rem);
 }
-.text-area{
+
+.home-content h1 {
+    font-weight: 900;
     text-align: center;
-    font-weight: 90;
-    margin-top: auto;
 }
-.search-area{
-    width: 70%;
-    margin-top: max(5rem,15vh);
+
+.home-content h3 {
+    text-align: center;
+    font-weight: 500;
 }
-.img-container{
-    margin-top: auto;
+
+.home-button {
+    box-shadow: 0px 0px 66px 7px rgba(175, 212, 233, 0.77);
+    -webkit-box-shadow: 0px 0px 66px 7px rgba(175, 212, 233, 0.77);
+    -moz-box-shadow: 0px 0px 66px 7px rgba(175, 212, 233, 0.77);
 }
-.img-container img{
-    width: 100%;
-    height: max(100%,15rem);
-    object-fit: cover;
+
+.home-food img{
     display: block;
-}
-
-.hidden{
-    transform: translateY(-10%);
-    filter:blur(5px);
-    opacity: 0;
-}
-
-.show{
-    transform: translateY(0%);
-    filter:blur(0);
-    opacity: 1;
-    transition: 0.5s;
+    width: 100%;
+    height: max(100%,12rem);
+    min-height: 12rem;
+    object-fit: scale-down;
 }

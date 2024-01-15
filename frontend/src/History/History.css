@@ -17,13 +17,14 @@
     border-bottom: solid white 3px;
 }
 
-.history-row {
-    display: flex;
-    gap: 2rem;
+.history-row{
     overflow-x: scroll;
-    overflow-y: hidden;
 }
-
+.history-row-inner{
+    display: flex;
+    margin-bottom: 2rem;
+    gap: 2rem;
+}
 .history-row::-webkit-scrollbar {
     height: 0.7em;
 }
@@ -41,10 +42,6 @@
 
 .history-row::-webkit-scrollbar-thumb:hover {
     background: #948b71;
-}
-
-.history-row-item {
-    flex-shrink: 0;
 }
 
 .history-information {
@@ -68,4 +65,11 @@
     display: grid;
     align-items: center;
     margin: 2rem 0;
+}
+
+.favorite-grid{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: center;
 }

@@ -2,6 +2,7 @@
 .recipe-container{
     width: min(120ch,90%);
     margin-inline: auto;
+    margin-bottom: 3rem;
 }
 
 .recipe-search{

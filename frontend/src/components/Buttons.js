@@ -3,12 +3,12 @@ import styled from '@emotion/styled'
 
 
 export const LoginButton = styled(Button)(() => ({
-    color: 'white',
+    color: 'grey',
     borderColor: '#41597E',
-    background: '#41597E',
-    borderRadius:'10px',
+    background: '#CFE5E7',
+    borderRadius: '10px',
     ':hover': {
-        backgroundColor: '#364967',
+        backgroundColor: '#aacacd',
         borderColor: '#364967'
     },
     ":disabled": {

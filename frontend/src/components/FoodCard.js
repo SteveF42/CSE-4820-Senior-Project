@@ -3,19 +3,28 @@ import './FoodCard.css'
 import { useNavigate } from 'react-router-dom'
 import StarButton from './StarButton/StarButton'
 import axios from 'axios'
+import { LoginButton } from './Buttons'
 
-const FoodCard = ({ title, calCount, img, className, id, clicked = false, ...props }) => {
-  const navigate = useNavigate()
-  const [isClicked, setIsClicked] = useState(clicked);
-  
+const FoodCard = ({ recipe, cardNum, ...props }) => {
+  const navigate = useNavigate();
+  const { title: title, nutrients, image: img, _id: id, y } = recipe || {};
+  const { calories: calCount, carbohydrateContent: carbs, fatContent: fat, proteinContent: protein } = nutrients || {}
+  const [isClicked, setIsClicked] = useState(false);
+  const cardBackGrounds = ['#839B9D', '#8B909E', '#869086']
+  const [foreGroundColor, setForeGroundColor] = useState(cardBackGrounds[0])
+
   useEffect(() => {
     let favIDArr = window.localStorage.getItem('favorites')?.split(',')
-    if(favIDArr && favIDArr.includes(id)){
+    if (favIDArr && favIDArr.includes(id)) {
       setIsClicked(true);
     }
+    setForeGroundColor(getRandColor())
   }, [])
-
-
+  const getRandColor = () => {
+    // return cardBackGrounds[0];
+    const idx = Math.floor(Math.random() * cardBackGrounds.length)
+    return cardBackGrounds[idx]
+  }
 
   //adds item to user history if they are logged in
   const favoritesRequest = async (method) => {
@@ -34,7 +43,7 @@ const FoodCard = ({ title, calCount, img, className, id, clicked = false, ...pro
 
         const res = await axios.post('/api/v1/favorite', { recipeID: id }, headers)
         favIDArr.push(id)
-        window.localStorage.setItem('favorites',favIDArr);
+        window.localStorage.setItem('favorites', favIDArr);
         return res
       }
       else if (method === 'delete') {
@@ -47,11 +56,11 @@ const FoodCard = ({ title, calCount, img, className, id, clicked = false, ...pro
           }
         })
         const idx = favIDArr.indexOf(id)
-        if(idx > -1){
-          favIDArr.splice(idx,1)
-          window.localStorage.setItem('favorites',favIDArr)
+        if (idx > -1) {
+          favIDArr.splice(idx, 1)
+          window.localStorage.setItem('favorites', favIDArr)
         }
-          
+
         return res
       }
 
@@ -82,17 +91,21 @@ const FoodCard = ({ title, calCount, img, className, id, clicked = false, ...pro
   }
 
   return (
-    <div className={`food-card-container expand-card ${className}`} {...props}>
-      <StarButton starred={isClicked} onClick={addToFav} style={{ marginRight: '0.3rem' }} />
+    <div className={`food-card-container expand-card`} {...props}>
 
-      <div style={{ display: 'flex', alignItems: 'center' }} onClick={visitRecipe(id)}>
+      <div className='food-card-inner' style={{ backgroundColor: foreGroundColor }} >
         <div className='food-card-img' >
           <img src={img}></img>
         </div>
+        <StarButton starred={isClicked} onClick={addToFav} style={{ marginRight: '0.3rem' }} />
         <div className='food-card-details'>
           <h2>{title}</h2>
-          <span>{calCount} Cal</span>
+          <span>{calCount}</span>
+          <span>Carbs: {carbs}</span>
+          <span>Protein: {protein}</span>
+          <span>Fat: {fat}</span>
         </div>
+        <LoginButton style={{ marginTop: 'auto', marginBottom: '10px', width: '70%' }} onClick={visitRecipe(id)}>Lets Cook</LoginButton>
       </div>
     </div>
 

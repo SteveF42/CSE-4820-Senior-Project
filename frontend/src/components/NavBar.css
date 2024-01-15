@@ -3,6 +3,7 @@
     z-index: 1;
     padding: 1rem;
     left: 0;
+    color: black;
 }
 .blur-background{
     background-color: rgba(0, 0, 0, 0.381);
