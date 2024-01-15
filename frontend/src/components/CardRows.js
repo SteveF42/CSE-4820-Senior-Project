@@ -12,7 +12,7 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
 
   useEffect(() => {
     const foodCards = recipes.map((x, i) => {
-      
+
       return (
         <m.div
           key={i}
@@ -31,7 +31,7 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
             },
           }}
         >
-          <FoodCard key={x?._id} className={`history-row-item`} img={x?.image} calCount={x?.nutrients?.calories} title={x?.title} id={x?._id} />
+          <FoodCard key={x?._id} recipe={x} id={x?._id} />
         </m.div>
       )
     });
@@ -59,7 +59,9 @@ export const CardRows = ({ date, recipes, totalDelay, ...props }) => {
         {`${months[date?.getMonth()]} ${date?.getFullYear()}`}
       </h3>
       <div className='history-row'>
-        {cards}
+        <div className='history-row-inner'>
+          {cards}
+        </div>
       </div>
     </m.div>
   );

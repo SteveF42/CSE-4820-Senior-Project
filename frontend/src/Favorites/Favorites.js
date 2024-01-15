@@ -31,7 +31,7 @@ const Favorites = () => {
         <m.div key={x.recipe._id} initial={{ opacity: 0, x: 100, filter: 'blur(3px)' }}
           animate={{ opacity: 1, x: 0, filter: 'blur(0)', transition: { duration: 0.5, delay: i * 0.03 } }}
           transition={{ duration: 0.3, delay: 0.8, opacity: 0 }}>
-          <FoodCard style={{ width: 'auto' }} calCount={x?.recipe?.nutrients?.calories} img={x?.recipe?.image} title={x?.recipe.title} id={x?.recipe._id} clicked={true}/>
+          <FoodCard recipe={x.recipe} clicked={true}/>
         </m.div>
       )
     })
@@ -49,7 +49,7 @@ const Favorites = () => {
       </div>
       <div className='history-container'>
         <h1>Your Favorites</h1>
-        <div className={`history-information`} style={{display:'grid', gap:'1rem'}}>
+        <div className={`history-information favorite-grid`}>
           {history}
         </div>
       </div>

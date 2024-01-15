@@ -1,41 +1,65 @@
-.food-card-container{
-    border-radius: 30px;
-    display: flex;
-    align-items: center;
-    background-color: white;
-    color: black;
-    font-size: 1rem;
-    padding: 1rem;
-    height: min(7rem,10vh);
-    width: 19rem;
-    font-size: clamp(0.5rem, 1vh + 4px, 1rem);
+:root {
+    --card-background-color: #A4A4A4;
+    --img-background-color: #EDEDED;
 }
-.food-card-img{
-    height: min(7rem,10vh);
-}
-.food-card-img img{
+
+.food-card-container {
+    border-radius: 15px;
+    background-color: var(--card-background-color);
+    color: white;
+    min-width: 13rem;
+    width: 50vw;
+    max-width: 18rem;
+    font-size: clamp(1rem, 1vw, 1.1rem);
+    padding: 0.5rem;
     height: 100%;
-    display: block;
-    object-fit: contain;
-    max-width: 8rem;
 }
-.food-card-details{
-    flex-grow: 1;
+
+.food-card-img {
+    height: 5rem;
+    width: 5rem;
+    background-color: var(--img-background-color);
+    padding: 0.6rem;
+    border-radius: 50%;
     margin: 1rem;
 }
-.food-card-details h2, span{
+
+.food-card-img img {
+    clip-path: circle();
+    display: block;
+    object-fit: cover;
+    height: 100%;
+    width: 100%;
+}
+
+.food-card-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 15px;
+    height: 100%;
+}
+
+.food-card-details {
+    text-align: center;
+}
+
+.food-card-details h2,
+span {
     display: -webkit-box;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
-    overflow:hidden;
+    overflow: hidden;
     margin: 0;
 }
-.food-card-details > span{
+
+.food-card-details>span {
     -webkit-line-clamp: 1;
 }
-.expand-card:hover{
+
+.expand-card:hover {
     background-color: rgb(203, 203, 203);
-    cursor: pointer;
     transition: 200ms;
     transition-delay: 0ms;
 }
+

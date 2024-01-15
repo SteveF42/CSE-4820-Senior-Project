@@ -25,6 +25,8 @@ const Recipe = () => {
   }, [searchParams])
 
   const fetchData = async (index) => {
+    if(ingredients === null) return;
+    
     console.log(index, 'fetching data')
     const URL = `/api/v1/recipe/search?ingredients=${ingredients}&count=${itemsPerPage}&skip=${(index) * itemsPerPage}`
     const res = await axios.get(URL)
@@ -41,7 +43,7 @@ const Recipe = () => {
         <m.div key={x._id} initial={{ opacity: 0, x: 100, filter: 'blur(3px)' }}
           animate={{ opacity: 1, x: 0, filter: 'blur(0)', transition: { duration: 0.5, delay: i * 0.03 } }}
           transition={{ duration: 0.3, delay: 0.8, opacity: 0 }}>
-          <FoodCard style={{ width: 'auto' }} calCount={x.nutrients?.calories} img={x.image} title={x.title} id={x._id} />
+          <FoodCard style={{ width: 'auto' }} recipe={x} />
         </m.div>
       )
     })
@@ -62,7 +64,7 @@ const Recipe = () => {
 
 
   return (
-    <div>
+    <>
       <NavBar />
       <div className='recipe-container'>
         <MainSearch className='recipe-search' />
@@ -81,7 +83,7 @@ const Recipe = () => {
         </div>
 
       </div>
-    </div >
+    </>
   )
 }
 
